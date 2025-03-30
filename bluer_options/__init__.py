@@ -6,7 +6,7 @@ ICON = "🌀"
 
 DESCRIPTION = f"{ICON} options for Bash."
 
-VERSION = "5.15.1"
+VERSION = "5.16.1"
 
 REPO_NAME = "bluer-options"
 

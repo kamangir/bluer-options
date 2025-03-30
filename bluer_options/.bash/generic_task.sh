@@ -35,7 +35,7 @@ function abcli_generic_task() {
     fi
 
     if [[ "|pypi|" == *"|$task|"* ]]; then
-        abcli_${task} "$2" \
+        bluer_ai_${task} "$2" \
             plugin=$plugin_name,$3 \
             "${@:4}"
         return

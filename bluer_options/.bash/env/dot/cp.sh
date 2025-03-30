@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_env_dot_cp() {
+function bluer_ai_env_dot_cp() {
     local env_name=$1
     [[ "$env_name" == *.env ]] &&
         env_name="${env_name%.env}"

@@ -3,10 +3,10 @@
 export abcli_path_env_backup=$HOME/env-backup
 mkdir -pv $abcli_path_env_backup
 
-function abcli_env() {
+function bluer_ai_env() {
     local task=$(abcli_unpack_keyword $1)
 
-    local function_name="abcli_env_$1"
+    local function_name="bluer_ai_env_$1"
     if [[ $(type -t $function_name) == "function" ]]; then
         $function_name "${@:2}"
         return

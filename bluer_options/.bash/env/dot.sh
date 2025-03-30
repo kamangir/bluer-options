@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 
-function abcli_env_dot() {
+function bluer_ai_env_dot() {
     local task=${1:-cat}
     [[ "$task" == "copy" ]] && task="cp"
 
-    local function_name="abcli_env_dot_$task"
+    local function_name="bluer_ai_env_dot_$task"
     if [[ $(type -t $function_name) == "function" ]]; then
         $function_name "${@:2}"
         return

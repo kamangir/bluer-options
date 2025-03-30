@@ -8,7 +8,7 @@ alias @browse=abcli_browse
 
 alias @code="abcli_code"
 
-alias @env=abcli_env
+alias @env=bluer_ai_env
 
 alias @eval=abcli_eval
 

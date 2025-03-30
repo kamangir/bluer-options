@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_env_dot_cat() {
+function bluer_ai_env_dot_cat() {
     local env_name=$(abcli_clarify_input $1 .env)
 
     if [[ "$env_name" == ".env" ]]; then

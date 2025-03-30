@@ -214,7 +214,7 @@ function abcli_seed() {
             fi
 
             if [ ! -z "$env_name" ]; then
-                seed="${seed}abcli_env dot copy $env_name$delim"
+                seed="${seed}bluer_ai_env dot copy $env_name$delim"
                 seed="${seed}abcli init$delim_section"
             fi
 

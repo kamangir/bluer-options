@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_env_backup() {
+function bluer_ai_env_backup() {
     local task=$1
 
     if [ "$task" == "list" ]; then

@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_env_dot_edit() {
+function bluer_ai_env_dot_edit() {
     local machine_kind=$(abcli_clarify_input $1 local)
 
     local machine_name=$2
