@@ -46,7 +46,7 @@ alias @repeat=abcli_repeat
 
 alias @sleep=abcli_sleep
 
-alias @test=blue_ai_test
+alias @test=bluer_ai_test
 
 alias @timestamp=abcli_string_timestamp
 alias @@timestamp=abcli_string_timestamp_short
