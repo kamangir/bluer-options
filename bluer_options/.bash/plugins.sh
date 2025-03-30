@@ -5,7 +5,7 @@ function abcli_plugin_name_from_repo() {
 
     [[ "$repo_name" == "." ]] && repo_name=$(abcli_git_get_repo_name)
 
-    python3 -m blue_ai.plugins \
+    python3 -m bluer_ai.plugins \
         get_plugin_name \
         --repo_name $repo_name \
         "${@:2}"

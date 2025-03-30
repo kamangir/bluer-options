@@ -2,7 +2,8 @@ import os
 from typing import List
 
 list_of_modules: List[str] = [
-    "blue_ai",
+    "abcli",
+    "bluer_ai",
     "bluer_options",
     "bluer_objects",
     "giza",
