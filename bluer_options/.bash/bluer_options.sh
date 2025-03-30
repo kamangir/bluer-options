@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 function bluer_options() {
-    local task=$(abcli_unpack_keyword $1 version)
+    local task=$1
 
     abcli_generic_task \
         plugin=bluer_options,task=$task \
