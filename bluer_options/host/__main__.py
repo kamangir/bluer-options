@@ -25,7 +25,7 @@ args = parser.parse_args()
 
 
 success = False
-# bash-tested in test_abcli_host in blue-objects.
+# bash-tested in test_bluer_ai_host in bluer-objects.
 if args.task == "get":
     success = True
     output = f"unknown-{args.keyword}"

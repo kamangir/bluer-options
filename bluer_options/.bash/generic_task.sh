@@ -29,7 +29,7 @@ function abcli_generic_task() {
     fi
 
     if [[ "|pylint|pytest|test|" == *"|$task|"* ]]; then
-        abcli_${task} plugin=$plugin_name,$2 \
+        bluer_ai_${task} plugin=$plugin_name,$2 \
             "${@:3}"
         return
     fi
