@@ -20,7 +20,7 @@ function bluer_ai_env_dot_cat() {
         abcli_scp \
             $machine_kind \
             $machine_name \
-            \~/git/awesome-bash-cli/.env \
+            \~/git/bluer_ai/.env \
             - \
             - \
             $filename
@@ -32,7 +32,7 @@ function bluer_ai_env_dot_cat() {
 
     if [[ "$env_name" == "config" ]]; then
         abcli_eval - \
-            cat $abcli_path_abcli/abcli/config.env
+            cat $abcli_path_abcli/bluer_ai/config.env
         return
     fi
 
