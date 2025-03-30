@@ -8,7 +8,7 @@ alias @browse=abcli_browse
 
 alias @code="abcli_code"
 
-alias @env=abcli_env
+alias @env=bluer_ai_env
 
 alias @eval=abcli_eval
 
@@ -46,7 +46,7 @@ alias @repeat=abcli_repeat
 
 alias @sleep=abcli_sleep
 
-alias @test=abcli_test
+alias @test=bluer_ai_test
 
 alias @timestamp=abcli_string_timestamp
 alias @@timestamp=abcli_string_timestamp_short

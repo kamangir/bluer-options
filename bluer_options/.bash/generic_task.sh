@@ -12,7 +12,7 @@ function abcli_generic_task() {
     fi
 
     if [ "$task" == "build_README" ]; then
-        abcli_build_README \
+        bluer_ai_build_README \
             plugin=$plugin_name,$2 \
             "${@:3}"
         return
@@ -35,7 +35,7 @@ function abcli_generic_task() {
     fi
 
     if [[ "|pypi|" == *"|$task|"* ]]; then
-        abcli_${task} "$2" \
+        bluer_ai_${task} "$2" \
             plugin=$plugin_name,$3 \
             "${@:4}"
         return

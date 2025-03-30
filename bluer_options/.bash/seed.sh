@@ -214,7 +214,7 @@ function abcli_seed() {
             fi
 
             if [ ! -z "$env_name" ]; then
-                seed="${seed}abcli_env dot copy $env_name$delim"
+                seed="${seed}bluer_ai_env dot copy $env_name$delim"
                 seed="${seed}abcli init$delim_section"
             fi
 
@@ -250,7 +250,7 @@ function abcli_seed() {
         echo -en $seed >$filename.sh
         chmod +x $filename.sh
 
-        echo "{\"version\":\"$abcli_version\"}" >$filename.json
+        echo "{\"version\":\"$bluer_ai_version\"}" >$filename.json
 
         [[ "$do_log" == 1 ]] &&
             abcli_log "seed 🌱 -> $filename."

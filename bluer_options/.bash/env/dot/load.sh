@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_env_dot_load() {
+function bluer_ai_env_dot_load() {
     local options=$1
     local plugin_name=$(abcli_option "$options" plugin abcli)
     local use_caller=$(abcli_option_int "$options" caller 0)

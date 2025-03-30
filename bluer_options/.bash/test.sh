@@ -2,7 +2,7 @@
 
 function bluer_ai_test() {
     local options=$1
-    local plugin_name=$(abcli_option "$options" plugin abcli)
+    local plugin_name=$(abcli_option "$options" plugin bluer_ai)
 
     local test_options=$2
 
@@ -18,7 +18,7 @@ function bluer_ai_test() {
 
     local list_of_tests=$(abcli_option "$options" what all)
     [[ "$list_of_tests" == all ]] &&
-        list_of_tests=$(abcli_test list,plugin=$plugin_name | tr "\n" " ")
+        list_of_tests=$(bluer_ai_test list,plugin=$plugin_name | tr "\n" " ")
     abcli_log_list "$list_of_tests" \
         --delim space \
         --before "running" \
