@@ -250,7 +250,7 @@ function abcli_seed() {
         echo -en $seed >$filename.sh
         chmod +x $filename.sh
 
-        echo "{\"version\":\"$abcli_version\"}" >$filename.json
+        echo "{\"version\":\"$bluer_ai_version\"}" >$filename.json
 
         [[ "$do_log" == 1 ]] &&
             abcli_log "seed 🌱 -> $filename."

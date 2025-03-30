@@ -3,7 +3,7 @@
 function abcli_help() {
     local callable=$1
     if [[ -z "$callable" ]]; then
-        abcli_version
+        bluer_ai_version
         return
     fi
 
