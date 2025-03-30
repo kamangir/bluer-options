@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_pytest() {
+function bluer_ai_pytest() {
     local options=$1
 
     local plugin_name=$(abcli_option "$options" plugin abcli)
