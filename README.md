@@ -2,6 +2,37 @@
 
 🌀 `bluer_options` implements an `options` argument for Bash.
 
+## installation
+
+```bash
+pip install bluer_options
+```
+
+add this line to your `~/.bash_profile` or `~/.bashrc`,
+
+```bash
+source $(python3 -m bluer_options locate)/.bash/bluer_options.sh
+```
+
+## usage
+
+let your function receive an `options` argument, then parse it with `abcli_options` and `abcli_options_int`.
+
+```bash
+function func() {
+    local options=$1
+
+    local var=$(abcli_options "$options" var default)
+    local key=$(abcli_options_int "$options" key 0)
+
+    [[ "$key" == 1 ]] &&
+        echo "var=$var"
+}
+```
+
+<details>
+<summary>example 1</summary>
+
 here is an example use of an `options` in the [vancouver-watching 🌈](https://github.com/kamangir/vancouver-watching) ingest command:
 
 
@@ -43,35 +74,10 @@ which is equivalent, in json notation, to,
 
 for more refer to 🔻 [giza](https://github.com/kamangir/giza).
 
-## installation
+</details>
 
-```bash
-pip install bluer_options
-```
-
-add this line to your `~/.bash_profile` or `~/.bashrc`,
-
-```bash
-source $(python3 -m bluer_options locate)/.bash/bluer_options.sh
-```
-
-## usage
-
-let your function receive an `options` argument, then parse it with `abcli_options` and `abcli_options_int`.
-
-```bash
-function func() {
-    local options=$1
-
-    local var=$(abcli_options "$options" var default)
-    local key=$(abcli_options_int "$options" key 0)
-
-    [[ "$key" == 1 ]] &&
-        echo "var=$var"
-}
-```
-
-## example 1
+<details>
+<summary>example 2</summary>
 
 from [reddit](https://www.reddit.com/r/bash/comments/1duw6ac/how_can_i_automate_these_tree_commands_i/)
 
@@ -112,6 +118,8 @@ now, you have access to the `@git` super command. here is how it works.
  ```
 
 ![image](https://raw.githubusercontent.com/kamangir/assets/main/blue-options/example1.png)
+
+</details>
 
 ---
 
