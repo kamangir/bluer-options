@@ -18,7 +18,7 @@ function bluer_ai_test() {
 
     local list_of_tests=$(abcli_option "$options" what all)
     [[ "$list_of_tests" == all ]] &&
-        list_of_tests=$(abcli_test list,plugin=$plugin_name | tr "\n" " ")
+        list_of_tests=$(blue_ai_test list,plugin=$plugin_name | tr "\n" " ")
     abcli_log_list "$list_of_tests" \
         --delim space \
         --before "running" \
