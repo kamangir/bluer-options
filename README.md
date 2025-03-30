@@ -1,49 +1,122 @@
-# 🌀 blue-plugin
+# 🌀 bluer-options
 
-🌀 `@plugin` is a git template for an 🪄 [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`) plugin, to build [things like these](https://github.com/kamangir?tab=repositories), that out-of-the-box support,
+🌀 `bluer_options` implements an `options` argument for Bash.
 
-- a [github repo](https://github.com/) with [actions](https://github.com/features/actions).
-- [pylint](https://pypi.org/project/pylint/).
-- [pytest](https://docs.pytest.org/).
-- a pip-installable python + bash package published to [pypi](https://pypi.org/).
-- a bash [command interface](./blue_plugin/.abcli/blue_plugin.sh).
-- [bash testing](./.github/workflows/bashtest.yml).
-- secret management through [ssm](https://docs.aws.amazon.com/secretsmanager/).
-- in-repo [compiled](https://github.com/kamangir/blue-objects/tree/main/blue_objects/README) READMEs. example: [template.md](https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics-template.md) -> [README.md](https://github.com/kamangir/palisades/blob/main/palisades/docs/damage-analytics.md).
-- [object management](https://github.com/kamangir/blue-objects) on [Amazon S3](https://aws.amazon.com/s3/) with metadata tracking by [MLflow](https://mlflow.org/).
-- [workflow management](https://github.com/kamangir/notebooks-and-scripts/tree/main/blueflow/workflow) on [AWS Batch](https://aws.amazon.com/batch/).
-- [docker](https://github.com/kamangir/notebooks-and-scripts/blob/main/blueflow/.abcli/docker.sh) and [SageMaker](https://github.com/kamangir/notebooks-and-scripts/blob/main/blueflow/.abcli/sagemaker.sh) enabled.
+here is an example use of an `options` in the [vancouver-watching 🌈](https://github.com/kamangir/vancouver-watching) ingest command:
+
+
+```bash
+ > @help vanwatch ingest
+```
+```bash
+vanwatch \
+	ingest \
+	[area=<area>,count=<-1>,~download,dryrun,~upload] \
+	[-|<object-name>] \
+	[process,count=<-1>,~download,dryrun,gif,model=<model-id>,publish,~upload] \
+	[--detect_objects 0] \
+	[--overwrite 1] \
+	[--verbose 1]
+```
+
+this command takes in an `options`, an `object`, and `args`. an `options` is a string representation of a dictionary, such as,
+
+```bash
+area=<vancouver>,~batch,count=<-1>,dryrun,gif,model=<model-id>,~process,publish,~upload
+```
+
+which is equivalent, in json notation, to,
+
+```json
+{
+    "area": "vancouver",
+    "batch": false,
+    "count": -1,
+    "dryrun": true,
+    "gif": true,
+    "model": "<model-id>",
+    "process": false,
+    "publish": true,
+    "upload": false,
+}
+```
+
+for more refer to 🔻 [giza](https://github.com/kamangir/giza).
 
 ## installation
 
 ```bash
-pip install blue-plugin
+pip install bluer_options
 ```
 
-## creating a blue-plugin
-
-1️⃣ create a new repository from [this template](https://github.com/kamangir/blue-plugin),
-
-2️⃣ complete `<repo-name>` and `<plugin-name>` and run,
+add this line to your `~/.bash_profile` or `~/.bashrc`,
 
 ```bash
-@git clone <repo-name> cd
-
-@plugins transform <repo-name>
-
-@init
-<plugin-name> help
+source $(python3 -m bluer_options locate)/.bash/bluer_options.sh
 ```
 
-## features
+## usage
 
-|   |   |   |
-| --- | --- | --- |
-| [`feature 1`](#) [![image](https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true)](#) description of feature 1 ... | [`feature 2`](#) [![image](https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true)](#) description of feature 2 ... | [`feature 3`](#) [![image](https://github.com/kamangir/assets/raw/main/blue-plugin/marquee.png?raw=true)](#) description of feature 3 ... |
+let your function receive an `options` argument, then parse it with `abcli_options` and `abcli_options_int`.
+
+```bash
+function func() {
+    local options=$1
+
+    local var=$(abcli_options "$options" var default)
+    local key=$(abcli_options_int "$options" key 0)
+
+    [[ "$key" == 1 ]] &&
+        echo "var=$var"
+}
+```
+
+## example 1
+
+from [reddit](https://www.reddit.com/r/bash/comments/1duw6ac/how_can_i_automate_these_tree_commands_i/)
+
+> How can I automate these tree commands I frequently need to type out?
+I would like to run:
+```bash
+git add .
+git commit -m "Initial "commit"
+git push
+```
+> I got bored of typing them out each time. Can I make an alias or something like "gc" (for git commit). The commit message is always the same "Initial commit".
+
+first, install `bluer-options`. this will also install [`blueness`](https://github.com/kamangir/blueness).
+
+```bash
+pip install bluer_options
+```
+
+then, copy [`example1.sh`](./bluer_options/assets/example1.sh) to your machine and add this line to the end of your `bash_profile`,
+
+```bash
+source <path/to/example1.sh>
+```
+
+now, you have access to the `@git` super command. here is how it works.
+
+1. `@git help` shows usage instructions (see below).
+1. `@git commit` runs the three commands. you can customize the message by running `@git commit <message>`. you can also avoid the push by running `@git commit <message> ~push`.
+1. for any `<task>` other than `commit`, `@git <task> <args>` runs `git <task> <args>`.
+
+```
+ > @git help
+ @git commit [<message>] \
+	~push
+ . git commit with <message> and push.
+@git <command>
+ . git <command>.
+ ```
+
+![image](https://raw.githubusercontent.com/kamangir/assets/main/blue-options/example1.png)
 
 ---
 
+> 🌀 [`blue-options`](https://github.com/kamangir/blue-options) for the [Global South](https://github.com/kamangir/blue-south).
 
-[![pylint](https://github.com/kamangir/blue-plugin/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/blue-plugin/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/blue-plugin/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/blue-plugin/actions/workflows/pytest.yml) [![bashtest](https://github.com/kamangir/blue-plugin/actions/workflows/bashtest.yml/badge.svg)](https://github.com/kamangir/blue-plugin/actions/workflows/bashtest.yml) [![PyPI version](https://img.shields.io/pypi/v/blue-plugin.svg)](https://pypi.org/project/blue-plugin/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/blue-plugin)](https://pypistats.org/packages/blue-plugin)
+---
 
-built by 🌀 [`blue_options-4.240.1`](https://github.com/kamangir/awesome-bash-cli), based on 🌀 [`blue_plugin-3.230.1`](https://github.com/kamangir/blue-plugin).
+[![pylint](https://github.com/kamangir/bluer-options/actions/workflows/pylint.yml/badge.svg)](https://github.com/kamangir/bluer-options/actions/workflows/pylint.yml) [![pytest](https://github.com/kamangir/bluer-options/actions/workflows/pytest.yml/badge.svg)](https://github.com/kamangir/bluer-options/actions/workflows/pytest.yml) [![PyPI version](https://img.shields.io/pypi/v/bluer-options.svg)](https://pypi.org/project/bluer-options/) [![PyPI - Downloads](https://img.shields.io/pypi/dd/bluer-options)](https://pypistats.org/packages/bluer-options)

@@ -1,6 +1,6 @@
+from bluer_options import NAME, VERSION, DESCRIPTION, REPO_NAME
 from blueness.pypi import setup
 
-from blue_plugin import NAME, VERSION, DESCRIPTION, REPO_NAME
 
 setup(
     filename=__file__,
@@ -10,16 +10,21 @@ setup(
     description=DESCRIPTION,
     packages=[
         NAME,
+        f"{NAME}.assets",
+        f"{NAME}.env",
         f"{NAME}.help",
-        f"{NAME}.help.node",
-        f"{NAME}.node",
+        f"{NAME}.host",
+        f"{NAME}.list",
+        f"{NAME}.logger",
+        f"{NAME}.options",
+        f"{NAME}.string",
+        f"{NAME}.terminal",
     ],
     include_package_data=True,
     package_data={
         NAME: [
-            "config.env",
-            "sample.env",
-            ".abcli/**/*.sh",
+            ".bash/**/*.sh",
+            "assets/*",
         ],
     },
 )
