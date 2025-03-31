@@ -2,9 +2,9 @@
 
 alias @assert=abcli_assert
 
-alias @badge=abcli_badge
+alias @badge=bluer_ai_badge
 
-alias @browse=abcli_browse
+alias @browse=bluer_ai_browse
 
 alias @code="abcli_code"
 
@@ -12,19 +12,19 @@ alias @env=bluer_ai_env
 
 alias @eval=abcli_eval
 
-alias @help=abcli_help
+alias @help=bluer_ai_help
 
 alias @hr=abcli_hr
 
-alias @cat=abcli_cat
+alias @cat=bluer_ai_cat
 
-alias @list=abcli_list
+alias @list=bluer_ai_list
 
 alias @log=abcli_log
 alias @error=abcli_log_error
 alias @warn=abcli_log_warning
 
-alias @log_list=abcli_log_list
+alias @log_list=bluer_ai_log_list
 
 alias @not=abcli_not
 
@@ -37,14 +37,14 @@ alias @option::subset=abcli_option_subset
 
 alias @options=bluer_options
 
-alias @pause=abcli_pause
+alias @pause=bluer_ai_pause
 
-alias @pylint=abcli_pylint
-alias @pytest=abcli_pytest
+alias @pylint=bluer_ai_pylint
+alias @pytest=bluer_ai_pytest
 
-alias @repeat=abcli_repeat
+alias @repeat=bluer_ai_repeat
 
-alias @sleep=abcli_sleep
+alias @sleep=bluer_ai_sleep
 
 alias @test=bluer_ai_test
 
@@ -55,4 +55,4 @@ alias @today=abcli_string_today
 
 alias @wait=abcli_wait
 
-alias @watch=abcli_watch
+alias @watch=bluer_ai_watch

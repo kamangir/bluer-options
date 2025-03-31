@@ -62,6 +62,6 @@ function abcli_assert_file_exists() {
 
 function abcli_assert_list() {
     abcli_assert \
-        $(abcli_list_sort "$1") \
-        $(abcli_list_sort "$2")
+        $(bluer_ai_list_sort "$1") \
+        $(bluer_ai_list_sort "$2")
 }

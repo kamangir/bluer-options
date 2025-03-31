@@ -35,7 +35,7 @@ else
     unset BLUE LIGHTBLUE CYAN GREEN NC RED YELLOW
 fi
 
-function abcli_cat() {
+function bluer_ai_cat() {
     local filename=$1
 
     if [ ! -f "$filename" ]; then
@@ -58,7 +58,7 @@ function abcli_hr() {
         --width $width
 }
 
-function abcli_log_list() {
+function bluer_ai_log_list() {
     local message=$(python3 -m bluer_options.list \
         log \
         --items "$1" \

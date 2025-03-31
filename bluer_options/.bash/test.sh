@@ -19,7 +19,7 @@ function bluer_ai_test() {
     local list_of_tests=$(abcli_option "$options" what all)
     [[ "$list_of_tests" == all ]] &&
         list_of_tests=$(bluer_ai_test list,plugin=$plugin_name | tr "\n" " ")
-    abcli_log_list "$list_of_tests" \
+    bluer_ai_log_list "$list_of_tests" \
         --delim space \
         --before "running" \
         --after "test(s)"
@@ -39,12 +39,12 @@ function bluer_ai_test() {
         abcli_hr
     done
 
-    failed_test_list=$(abcli_list_nonempty $failed_test_list)
+    failed_test_list=$(bluer_ai_list_nonempty $failed_test_list)
     if [[ -z "$failed_test_list" ]]; then
         abcli_log "✅ $plugin_name"
         return
     else
-        abcli_log_list "$failed_test_list" \
+        bluer_ai_log_list "$failed_test_list" \
             --after "failed test(s)" \
             --before ""
         return 1

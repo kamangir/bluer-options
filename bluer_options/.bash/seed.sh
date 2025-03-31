@@ -1,14 +1,14 @@
 #! /usr/bin/env bash
 
-function abcli_seed() {
+function bluer_ai_seed() {
     local task=$(abcli_unpack_keyword $1)
 
     local list_of_seed_targets="cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker-jupyterlab|studio-classic-sagemaker|studio-classic-sagemaker-system"
 
     if [ "$task" == "list" ]; then
-        local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'abcli_seed_' | sed 's/abcli_seed_//' | tr '\n' '|')
+        local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
         list_of_targets="$list_of_targets|$list_of_seed_targets"
-        abcli_log_list "$list_of_targets" \
+        bluer_ai_log_list "$list_of_targets" \
             --before "" \
             --delim \| \
             --after "target(s)"
@@ -25,7 +25,7 @@ function abcli_seed() {
 
         local destination_filename=$3
 
-        local var_name=_abcli_seed_$(echo $source_filename | tr / _ | tr . _ | tr - _ | tr \~ _ | tr \$ _)
+        local var_name=_bluer_ai_seed_$(echo $source_filename | tr / _ | tr . _ | tr - _ | tr \~ _ | tr \$ _)
 
         local seed="$var_name=\"$(cat $source_filename | $base64)\"$delim"
         seed="${seed}echo \$$var_name | base64 --decode > $var_name$delim"
@@ -94,7 +94,7 @@ function abcli_seed() {
 
     if [[ "|$list_of_seed_targets|" != *"|$target|"* ]]; then
         # expected to append to/update $seed
-        local function_name="abcli_seed_${target}"
+        local function_name="bluer_ai_seed_${target}"
 
         if [[ $(type -t $function_name) == "function" ]]; then
             $function_name "${@:2}"
@@ -109,7 +109,7 @@ function abcli_seed() {
             if [[ "$target" != studio-classic-sagemaker ]]; then
                 if [ -d "$HOME/.kaggle" ]; then
                     seed="${seed}mkdir -p \$HOME/.kaggle$delim"
-                    seed="$seed$(abcli_seed add_file $HOME/.kaggle/kaggle.json \$HOME/.kaggle/kaggle.json)$delim"
+                    seed="$seed$(bluer_ai_seed add_file $HOME/.kaggle/kaggle.json \$HOME/.kaggle/kaggle.json)$delim"
                     seed="${seed}chmod 600 \$HOME/.kaggle/kaggle.json$delim_section"
                 else
                     abcli_log_warning "-abcli: seed: kaggle.json not found."
@@ -119,16 +119,16 @@ function abcli_seed() {
             if [[ "$target" != studio-classic-sagemaker* ]] && [[ "$target" != cloudshell ]]; then
                 seed="$seed${sudo_prefix}rm -rf ~/.aws$delim"
                 seed="$seed${sudo_prefix}mkdir ~/.aws$delim_section"
-                seed="$seed$(abcli_seed add_file $HOME/.aws/config \$HOME/.aws/config)$delim"
-                seed="$seed$(abcli_seed add_file $HOME/.aws/credentials \$HOME/.aws/credentials)$delim_section"
+                seed="$seed$(bluer_ai_seed add_file $HOME/.aws/config \$HOME/.aws/config)$delim"
+                seed="$seed$(bluer_ai_seed add_file $HOME/.aws/credentials \$HOME/.aws/credentials)$delim_section"
             fi
 
             if [[ "|cloudshell|studio-classic-sagemaker|" != *"|$target|"* ]]; then
                 seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
                 seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
-                seed="$seed$(abcli_seed add_file $HOME/.ssh/$abcli_git_ssh_key_name \$HOME/.ssh/$abcli_git_ssh_key_name)$delim"
-                seed="${seed}chmod 600 ~/.ssh/$abcli_git_ssh_key_name$delim"
-                seed="${seed}ssh-add -k ~/.ssh/$abcli_git_ssh_key_name$delim_section"
+                seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$bluer_ai_git_ssh_key_name \$HOME/.ssh/$bluer_ai_git_ssh_key_name)$delim"
+                seed="${seed}chmod 600 ~/.ssh/$bluer_ai_git_ssh_key_name$delim"
+                seed="${seed}ssh-add -k ~/.ssh/$bluer_ai_git_ssh_key_name$delim_section"
             fi
 
             if [[ "$target" == "studio-classic-sagemaker-system" ]]; then
@@ -175,10 +175,10 @@ function abcli_seed() {
                 seed="${seed}cd; mkdir -p git; cd git$delim"
                 seed="${seed}git clone $repo_address$delim"
                 seed="${seed}cd awesome-bash-cli${delim}"
-                seed="${seed}git checkout $abcli_git_branch; git pull$delim_section"
+                seed="${seed}git checkout $bluer_ai_git_branch; git pull$delim_section"
             fi
 
-            seed="$seed$(abcli_seed \
+            seed="$seed$(bluer_ai_seed \
                 add_file \
                 $HOME/git/awesome-bash-cli/.env \
                 \$HOME/git/awesome-bash-cli/.env)$delim_section"
@@ -210,7 +210,7 @@ function abcli_seed() {
 
             if [[ "$target" == sagemaker-jupyterlab ]]; then
                 seed="${seed}pip3 install --upgrade opencv-python-headless$delim_section"
-                seed="${seed}abcli_plugins_install all$delim_section"
+                seed="${seed}bluer_ai_plugins_install all$delim_section"
             fi
 
             if [ ! -z "$env_name" ]; then
@@ -222,7 +222,7 @@ function abcli_seed() {
                 local plugin_name=$(abcli_option "$options" plugin)
 
                 [[ ! -z "$plugin_name" ]] &&
-                    seed="${seed}abcli_conda create name=$plugin_name,~recreate$delim"
+                    seed="${seed}bluer_ai_conda create name=$plugin_name,~recreate$delim"
             fi
         fi
     fi

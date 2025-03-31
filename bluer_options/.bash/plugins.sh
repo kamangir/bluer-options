@@ -3,7 +3,7 @@
 function abcli_plugin_name_from_repo() {
     local repo_name=${1:-.}
 
-    [[ "$repo_name" == "." ]] && repo_name=$(abcli_git_get_repo_name)
+    [[ "$repo_name" == "." ]] && repo_name=$(bluer_ai_git_get_repo_name)
 
     python3 -m bluer_ai.plugins \
         get_plugin_name \

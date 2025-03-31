@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_browse() {
+function bluer_ai_browse() {
     local url=$1
 
     local description=$2

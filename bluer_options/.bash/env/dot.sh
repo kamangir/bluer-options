@@ -18,7 +18,7 @@ function bluer_ai_env_dot() {
     fi
 
     if [[ "$task" == "list" ]]; then
-        abcli_ls $abcli_path_assets/env/
+        bluer_ai_ls $abcli_path_assets/env/
         return
     fi
 
@@ -33,4 +33,4 @@ function bluer_ai_env_dot() {
     return 1
 }
 
-abcli_source_caller_suffix_path /dot
+bluer_ai_source_caller_suffix_path /dot

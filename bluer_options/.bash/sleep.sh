@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_sleep() {
+function bluer_ai_sleep() {
     local options=$1
     local seconds=$(abcli_option "$options" seconds 3)
 

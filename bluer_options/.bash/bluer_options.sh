@@ -9,7 +9,7 @@ function bluer_options() {
 }
 
 function bluer_options_action_git_before_push() {
-    [[ "$(abcli_git get_branch)" != "main" ]] &&
+    [[ "$(bluer_ai_git get_branch)" != "main" ]] &&
         return 0
 
     bluer_options pypi build

@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_badge() {
+function bluer_ai_badge() {
     local note=$1
     [[ "$note" == "clear" ]] && note=""
 
@@ -54,7 +54,7 @@ function abcli_update_terminal() {
     local icon=$(abcli_get_icon)
 
     [[ ! -z "$icon" ]] &&
-        abcli_badge "$icon"
+        bluer_ai_badge "$icon"
 
     local title="$icon $abcli_fullname"
     [[ "$abcli_is_sagemaker" == false ]] &&
