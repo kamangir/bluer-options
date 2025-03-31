@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_pause() {
+function bluer_ai_pause() {
     local options=$1
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
 

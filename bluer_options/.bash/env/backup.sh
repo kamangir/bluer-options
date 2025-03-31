@@ -4,7 +4,7 @@ function bluer_ai_env_backup() {
     local task=$1
 
     if [ "$task" == "list" ]; then
-        abcli_ls $abcli_path_env_backup
+        bluer_ai_ls $abcli_path_env_backup
         return
     fi
 

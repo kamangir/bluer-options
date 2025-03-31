@@ -6,8 +6,8 @@ from bluer_options.help.parsing import get_callable_module, get_callable_suffix
 @pytest.mark.parametrize(
     ["callable", "expected_module_name"],
     [
-        ["abcli_git", "abcli"],
-        ["abcli_git_push", "abcli"],
+        ["bluer_ai_git", "abcli"],
+        ["bluer_ai_git_push", "abcli"],
         ["void_xyz", "void_xyz"],
         ["void_xyz_abc_dddsf", "void_xyz_abc_dddsf"],
     ],
@@ -22,8 +22,8 @@ def test_get_callable_module(
 @pytest.mark.parametrize(
     ["callable", "expected_suffix"],
     [
-        ["abcli_git", "git"],
-        ["abcli_git_push", "git_push"],
+        ["bluer_ai_git", "git"],
+        ["bluer_ai_git_push", "git_push"],
         ["void_xyz", ""],
         ["void_xyz_abc_dddsf", ""],
     ],

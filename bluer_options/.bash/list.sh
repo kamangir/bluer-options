@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
-function abcli_list() {
+function bluer_ai_list() {
     local task=$1
 
-    local function_name=abcli_list_$task
+    local function_name=bluer_ai_list_$task
     if [[ $(type -t $function_name) == "function" ]]; then
         $function_name "${@:2}"
         return
@@ -12,14 +12,14 @@ function abcli_list() {
     python3 -m bluer_options.list "$@"
 }
 
-function abcli_list_filter() {
+function bluer_ai_list_filter() {
     python3 -m bluer_options.list \
         filter \
         --items "$1" \
         "${@:2}"
 }
 
-function abcli_list_in() {
+function bluer_ai_list_in() {
     python3 -m bluer_options.list \
         in \
         --item "$1" \
@@ -27,7 +27,7 @@ function abcli_list_in() {
         "${@:3}"
 }
 
-function abcli_list_intersect() {
+function bluer_ai_list_intersect() {
     python3 -m bluer_options.list \
         intersect \
         --items_1 "$1" \
@@ -35,7 +35,7 @@ function abcli_list_intersect() {
         "${@:3}"
 }
 
-function abcli_list_item() {
+function bluer_ai_list_item() {
     python3 -m bluer_options.list \
         item \
         --items "$1" \
@@ -43,18 +43,18 @@ function abcli_list_item() {
         "${@:3}"
 }
 
-function abcli_list_len() {
+function bluer_ai_list_len() {
     python3 -m bluer_options.list \
         len \
         --items "$1" \
         "${@:2}"
 }
 
-function abcli_list_log() {
-    abcli_log_list "$@"
+function bluer_ai_list_log() {
+    bluer_ai_log_list "$@"
 }
 
-function abcli_list_next() {
+function bluer_ai_list_next() {
     python3 -m bluer_options.list \
         next \
         --item "$1" \
@@ -62,7 +62,7 @@ function abcli_list_next() {
         "${@:3}"
 }
 
-function abcli_list_prev() {
+function bluer_ai_list_prev() {
     python3 -m bluer_options.list \
         prev \
         --item "$1" \
@@ -70,14 +70,14 @@ function abcli_list_prev() {
         "${@:3}"
 }
 
-function abcli_list_nonempty() {
+function bluer_ai_list_nonempty() {
     python3 -m bluer_options.list \
         nonempty \
         --items "$1" \
         "${@:2}"
 }
 
-function abcli_list_resize() {
+function bluer_ai_list_resize() {
     python3 -m bluer_options.list \
         resize \
         --items "$1" \
@@ -85,7 +85,7 @@ function abcli_list_resize() {
         "${@:3}"
 }
 
-function abcli_list_sort() {
+function bluer_ai_list_sort() {
     python3 -m bluer_options.list \
         sort \
         --items "$1" \

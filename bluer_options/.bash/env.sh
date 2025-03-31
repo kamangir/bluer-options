@@ -21,4 +21,4 @@ function bluer_ai_env() {
         "$command_line"
 }
 
-abcli_source_caller_suffix_path /env
+bluer_ai_source_caller_suffix_path /env

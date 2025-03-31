@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_repeat() {
+function bluer_ai_repeat() {
     local options=$1
     local count=$(abcli_option "$options" count 1)
 

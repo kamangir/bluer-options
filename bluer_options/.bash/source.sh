@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_source_path() {
+function bluer_ai_source_path() {
     local path=$1
 
     local options=$2
@@ -9,7 +9,7 @@ function abcli_source_path() {
 
     if [[ ! -d "$path" ]]; then
         [[ "$ignore_error" == 0 ]] &&
-            abcli_log_error "abcli_source_path: $path: path not found."
+            abcli_log_error "bluer_ai_source_path: $path: path not found."
         return 1
     fi
 
@@ -26,7 +26,7 @@ function abcli_source_path() {
     popd >/dev/null
 }
 
-function abcli_source_caller_suffix_path() {
+function bluer_ai_source_caller_suffix_path() {
     local suffix=$1
 
     local path=$(dirname "$(realpath "${BASH_SOURCE[1]}")")
@@ -34,6 +34,6 @@ function abcli_source_caller_suffix_path() {
     [[ ! -z "$suffix" ]] &&
         path=$path$suffix
 
-    abcli_source_path "$path" \
+    bluer_ai_source_path "$path" \
         "${@:2}"
 }

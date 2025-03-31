@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_help() {
+function bluer_ai_help() {
     local callable=$1
     if [[ -z "$callable" ]]; then
         bluer_ai_version

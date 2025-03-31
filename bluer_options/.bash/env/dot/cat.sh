@@ -11,7 +11,7 @@ function bluer_ai_env_dot_cat() {
         return
     fi
 
-    if [ "$(abcli_list_in $env_name rpi,jetson_nano)" == True ]; then
+    if [ "$(bluer_ai_list_in $env_name rpi,jetson_nano)" == True ]; then
         local machine_kind=$1
         local machine_name=$2
 

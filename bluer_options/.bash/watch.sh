@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_watch() {
+function bluer_ai_watch() {
     local options=$1
     local do_clear=$(abcli_option_int "$options" clear 1)
 
@@ -9,6 +9,6 @@ function abcli_watch() {
 
         abcli_eval "$@"
 
-        abcli_sleep ,$options
+        bluer_ai_sleep ,$options
     done
 }
