@@ -28,7 +28,7 @@ alias @log_list=bluer_ai_log_list
 
 alias @not=abcli_not
 
-alias @open=abcli_open
+alias @open=bluer_ai_open
 
 alias @option=abcli_option
 alias @option::int=abcli_option_int
