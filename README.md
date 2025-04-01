@@ -123,7 +123,7 @@ now, you have access to the `@git` super command. here is how it works.
 
 ---
 
-> 🌀 [`blue-options`](https://github.com/kamangir/blue-options) for the [Global South](https://github.com/kamangir/blue-south).
+> 🌀 [`blue-options`](https://github.com/kamangir/blue-options) for the [Global South](https://github.com/kamangir/bluer-south).
 
 ---
 
