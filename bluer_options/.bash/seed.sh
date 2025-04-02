@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 function bluer_ai_seed() {
-    local task=$(abcli_unpack_keyword $1)
+    local task=$1
 
     local list_of_seed_targets="cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker-jupyterlab|studio-classic-sagemaker|studio-classic-sagemaker-system"
 
