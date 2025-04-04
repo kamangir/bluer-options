@@ -6,6 +6,8 @@ list_of_modules: List[str] = [
     "bluer_ai",
     "bluer_options",
     "bluer_objects",
+    "bluer_plugin",
+    "bluer_sbc",
     "giza",
 ] + [
     item
