@@ -23,6 +23,6 @@ EOP = "\033[33m"
 
 HOST_NAME: Union[None, str] = None
 
-abcli_hostname = os.getenv("abcli_hostname", "")
+abcli_hostname = get_env("abcli_hostname")
 
-abcli_wifi_ssid = os.getenv("abcli_wifi_ssid", "")
+BLUER_AI_WIFI_SSID = get_env("BLUER_AI_WIFI_SSID")

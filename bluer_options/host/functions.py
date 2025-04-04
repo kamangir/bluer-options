@@ -125,7 +125,7 @@ def signature() -> List[str]:
             env.abcli_hostname,
             get_name(),
         ]
-        + ([env.abcli_wifi_ssid] if env.abcli_wifi_ssid else [])
+        + ([env.BLUER_AI_WIFI_SSID] if env.BLUER_AI_WIFI_SSID else [])
     )
 
 
