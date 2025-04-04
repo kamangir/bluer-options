@@ -12,7 +12,7 @@ function bluer_ai_env_dot_cp() {
     if [ "$machine_kind" == "local" ]; then
         cp -v \
             $abcli_path_assets/env/$env_name.env \
-            $abcli_path_git/blue-sbc/.env
+            $abcli_path_git/bluer-sbc/.env
     else
         # https://kb.iu.edu/d/agye
         abcli_scp \
@@ -21,6 +21,6 @@ function bluer_ai_env_dot_cp() {
             $abcli_path_assets/env/$env_name.env \
             $machine_kind \
             $machine_name \
-            \~/git/blue-sbc/.env
+            \~/git/bluer-sbc/.env
     fi
 }

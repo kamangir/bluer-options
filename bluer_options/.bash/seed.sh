@@ -126,9 +126,9 @@ function bluer_ai_seed() {
             if [[ "|cloudshell|studio-classic-sagemaker|" != *"|$target|"* ]]; then
                 seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
                 seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
-                seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$bluer_ai_git_ssh_key_name \$HOME/.ssh/$bluer_ai_git_ssh_key_name)$delim"
-                seed="${seed}chmod 600 ~/.ssh/$bluer_ai_git_ssh_key_name$delim"
-                seed="${seed}ssh-add -k ~/.ssh/$bluer_ai_git_ssh_key_name$delim_section"
+                seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$bluer_ai_git_ssh_key_name)$delim"
+                seed="${seed}chmod 600 ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim"
+                seed="${seed}ssh-add -k ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim_section"
             fi
 
             if [[ "$target" == "studio-classic-sagemaker-system" ]]; then
