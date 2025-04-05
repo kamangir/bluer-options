@@ -71,17 +71,3 @@ function abcli_log_local() {
     local message="$@"
     printf "$CYAN$message$NC\n"
 }
-
-function abcli_show_usage() {
-    local command=$1
-    local description=$2
-    local comments=$3
-
-    printf "${LIGHTBLUE}$command${NC}\n"
-    [[ ! -z "$description" ]] &&
-        printf "${CYAN} . $description${NC}\n"
-    [[ ! -z "$comments" ]] &&
-        printf "${GREEN} * $comments${NC}\n"
-
-    return 0
-}

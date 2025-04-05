@@ -7,16 +7,7 @@ alias @git=my_git
 source $(python3 -m bluer_options locate)/.bash/bluer_options.sh
 
 function my_git() {
-    local task=${1:help}
-
-    if [[ "$task" == "help" ]]; then
-        abcli_show_usage "@git commit [<message>]$ABCUL$EOP~push$EOPE" \
-            "git commit with <message> and push."
-
-        abcli_show_usage "@git <command>" \
-            "git <command>."
-        return
-    fi
+    local task=${1:-help}
 
     if [[ "$task" == "commit" ]]; then
         local message=${1:-"Initial commit"}
