@@ -23,7 +23,7 @@ function bluer_ai_env_dot_load() {
             local module_name=$(abcli_get_module_name_from_plugin $plugin_name)
             bluer_ai_ssm_get path=$path/$module_name
         else
-            abcli_log_warning "@env: dot: load: $path/$filename: file not found."
+            bluer_ai_log_warning "@env: dot: load: $path/$filename: file not found."
         fi
         return
     fi
