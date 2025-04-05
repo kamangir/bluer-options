@@ -77,7 +77,7 @@ function bluer_ai_seed() {
             seed_path="/media/abcli/SEED"
 
         if [ ! -d "$seed_path" ]; then
-            abcli_log_error "-abcli: seed: usb key not found."
+            abcli_log_error "@seed: usb key not found."
             return 1
         fi
 
@@ -112,7 +112,7 @@ function bluer_ai_seed() {
                     seed="$seed$(bluer_ai_seed add_file $HOME/.kaggle/kaggle.json \$HOME/.kaggle/kaggle.json)$delim"
                     seed="${seed}chmod 600 \$HOME/.kaggle/kaggle.json$delim_section"
                 else
-                    abcli_log_warning "-abcli: seed: kaggle.json not found."
+                    bluer_ai_log_warning "@seed: kaggle.json not found."
                 fi
             fi
 
@@ -231,7 +231,7 @@ function bluer_ai_seed() {
         seed="${seed}abcli_eval ${@:3}$delim_section"
 
     [[ "$target" == studio-classic-sagemaker* ]] &&
-        abcli_log_warning "run \"bash\" before pasting the seed."
+        bluer_ai_log_warning "run \"bash\" before pasting the seed."
 
     if [ "$output" == "clipboard" ]; then
         if [ "$abcli_is_mac" == true ]; then

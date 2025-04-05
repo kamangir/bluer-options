@@ -4,7 +4,7 @@ export bluer_ai_pylint_ignored=W0212,W1203,C0103,C0111,C0114,C0305,C0115,C0116,C
 
 function bluer_ai_pylint() {
     if [[ "$abcli_is_docker" == true ]]; then
-        abcli_log_warning "@pylint: not available inside docker."
+        bluer_ai_log_warning "@pylint: not available inside docker."
         return 1
     fi
 

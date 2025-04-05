@@ -22,7 +22,7 @@ alias @list=bluer_ai_list
 
 alias @log=abcli_log
 alias @error=abcli_log_error
-alias @warn=abcli_log_warning
+alias @warn=bluer_ai_log_warning
 
 alias @log_list=bluer_ai_log_list
 

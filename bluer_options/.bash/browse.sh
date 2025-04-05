@@ -17,6 +17,6 @@ function bluer_ai_browse() {
     elif [ "$abcli_is_rpi" == true ]; then
         DISPLAY=:0 chromium-browser -kiosk --no-sandbox "$url"
     else
-        abcli_log_warning "@browse: $url: skipped."
+        bluer_ai_log_warning "@browse: $url: skipped."
     fi
 }

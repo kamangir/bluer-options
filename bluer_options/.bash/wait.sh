@@ -15,7 +15,7 @@ function abcli_wait() {
             return 0
             ;;
         [Nn])
-            abcli_log_warning "Aborted."
+            bluer_ai_log_warning "Aborted."
             return 1
             ;;
         *)
