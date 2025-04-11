@@ -46,7 +46,7 @@ function bluer_ai_seed() {
 
     local seed=""
 
-    local target=$(abcli_clarify_input $1 ec2)
+    local target=$(bluer_ai_clarify_input $1 ec2)
 
     local options=$2
     local do_log=$(abcli_option_int "$options" log 1)

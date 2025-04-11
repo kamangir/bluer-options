@@ -5,7 +5,7 @@ function bluer_ai_env_dot_cp() {
     [[ "$env_name" == *.env ]] &&
         env_name="${env_name%.env}"
 
-    local machine_kind=$(abcli_clarify_input $2 local)
+    local machine_kind=$(bluer_ai_clarify_input $2 local)
 
     local machine_name=$3
 
