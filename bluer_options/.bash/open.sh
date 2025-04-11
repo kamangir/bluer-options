@@ -8,7 +8,7 @@ function bluer_ai_open() {
     [[ $open_QGIS == 1 ]] &&
         extension="qgz"
 
-    local object_name=$(abcli_clarify_object $2 .)
+    local object_name=$(bluer_ai_clarify_object $2 .)
 
     local filename=""
     [[ ! -z "$extension" ]] &&

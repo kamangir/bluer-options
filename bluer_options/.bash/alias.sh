@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-alias @assert=abcli_assert
+alias @assert=bluer_ai_assert
 
 alias @badge=bluer_ai_badge
 
@@ -26,7 +26,7 @@ alias @warn=bluer_ai_log_warning
 
 alias @log_list=bluer_ai_log_list
 
-alias @not=abcli_not
+alias @not=bluer_ai_not
 
 alias @open=bluer_ai_open
 
