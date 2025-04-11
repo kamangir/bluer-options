@@ -39,7 +39,7 @@ function bluer_ai_cat() {
     local filename=$1
 
     if [ ! -f "$filename" ]; then
-        abcli_log_error "@cat: $filename: file not found."
+        bluer_ai_log_error "@cat: $filename: file not found."
         return 1
     fi
 

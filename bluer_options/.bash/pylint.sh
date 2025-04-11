@@ -16,7 +16,7 @@ function bluer_ai_pylint() {
     local repo_path=$abcli_path_git/$repo_name
 
     if [[ ! -d "$repo_path" ]]; then
-        abcli_log_error "@pylint: $repo_path: path not found."
+        bluer_ai_log_error "@pylint: $repo_path: path not found."
         return 1
     fi
 

@@ -25,7 +25,7 @@ function abcli_eval() {
     [[ "$path" != "./" ]] && popd >/dev/null
 
     if [[ $status -ne 0 ]]; then
-        abcli_log_error "@eval: failed: status=$status: $command_line"
+        bluer_ai_log_error "@eval: failed: status=$status: $command_line"
         return 1
     fi
 

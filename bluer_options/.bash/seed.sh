@@ -77,7 +77,7 @@ function bluer_ai_seed() {
             seed_path="/media/abcli/SEED"
 
         if [ ! -d "$seed_path" ]; then
-            abcli_log_error "@seed: usb key not found."
+            bluer_ai_log_error "@seed: usb key not found."
             return 1
         fi
 
@@ -99,7 +99,7 @@ function bluer_ai_seed() {
         if [[ $(type -t $function_name) == "function" ]]; then
             $function_name "${@:2}"
         else
-            abcli_log_error "@seed: $target: target not found."
+            bluer_ai_log_error "@seed: $target: target not found."
             return 1
         fi
     else
@@ -257,7 +257,7 @@ function bluer_ai_seed() {
     elif [ "$output" == "screen" ]; then
         printf "$GREEN$seed$NC\n"
     else
-        abcli_log_error "this should not happen - output: $output".
+        bluer_ai_log_error "this should not happen - output: $output".
         return 1
     fi
 }
