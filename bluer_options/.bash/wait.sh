@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_wait() {
+function bluer_ai_wait() {
     local message=$1
     [[ -z "$message" ]] &&
         message="Continue?"

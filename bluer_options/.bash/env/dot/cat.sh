@@ -5,7 +5,7 @@ function bluer_ai_env_dot_cat() {
 
     if [[ "$env_name" == ".env" ]]; then
         pushd $abcli_path_abcli >/dev/null
-        abcli_eval - \
+        bluer_ai_eval - \
             dotenv list --format shell
         popd >/dev/null
         return
@@ -31,17 +31,17 @@ function bluer_ai_env_dot_cat() {
     fi
 
     if [[ "$env_name" == "config" ]]; then
-        abcli_eval - \
+        bluer_ai_eval - \
             cat $abcli_path_abcli/bluer_ai/config.env
         return
     fi
 
     if [[ "$env_name" == "sample" ]]; then
-        abcli_eval - \
+        bluer_ai_eval - \
             cat $abcli_path_abcli/sample.env
         return
     fi
 
-    abcli_eval - \
+    bluer_ai_eval - \
         cat $abcli_path_assets/env/$env_name.env
 }

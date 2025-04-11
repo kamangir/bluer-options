@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_eval() {
+function bluer_ai_eval() {
     local options=$1
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
     local do_log=$(abcli_option_int "$options" log 1)

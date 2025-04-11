@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
-function abcli_install_module() {
+function bluer_ai_install_module() {
     [[ "$abcli_is_in_notebook" == true ]] && return
 
     local module=$1
 
     local version=${2-"1.1.1"}
 
-    local install_path=$HOME/_abcli_install_checkpoint
+    local install_path=$HOME/_bluer_ai_install_checkpoint
     mkdir -pv $install_path
 
     local install_checkpoint=$install_path/${module}-${version}
@@ -19,7 +19,7 @@ function abcli_install_module() {
     else
         abcli_log "installing $description..."
 
-        eval abcli_install_$module
+        eval bluer_ai_install_$module
 
         touch $install_checkpoint
     fi

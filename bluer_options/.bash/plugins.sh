@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_plugin_name_from_repo() {
+function bluer_ai_plugin_name_from_repo() {
     local repo_name=${1:-.}
 
     [[ "$repo_name" == "." ]] && repo_name=$(bluer_ai_git_get_repo_name)
@@ -11,7 +11,7 @@ function abcli_plugin_name_from_repo() {
         "${@:2}"
 }
 
-function abcli_get_module_name_from_plugin() {
+function bluer_ai_get_module_name_from_plugin() {
     local plugin_name=$1
 
     local var_name=${plugin_name}_module_name
@@ -22,7 +22,7 @@ function abcli_get_module_name_from_plugin() {
     echo $module_name
 }
 
-function abcli_get_repo_name_from_plugin() {
+function bluer_ai_get_repo_name_from_plugin() {
     local plugin_name=$(echo "$1" | tr _ -)
 
     local var_name=${plugin_name}_repo_name
