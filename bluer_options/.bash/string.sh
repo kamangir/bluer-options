@@ -10,7 +10,7 @@ function abcli_string_after() {
 
 function abcli_string_before() {
     python3 -m bluer_options.string \
-        after \
+        before \
         --string "$1" \
         --substring "$2" \
         "${@:3}"
