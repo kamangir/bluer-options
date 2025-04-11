@@ -9,7 +9,7 @@ function bluer_ai_source_path() {
 
     if [[ ! -d "$path" ]]; then
         [[ "$ignore_error" == 0 ]] &&
-            abcli_log_error "bluer_ai_source_path: $path: path not found."
+            bluer_ai_log_error "bluer_ai_source_path: $path: path not found."
         return 1
     fi
 

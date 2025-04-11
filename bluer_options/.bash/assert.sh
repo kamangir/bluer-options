@@ -13,7 +13,7 @@ function abcli_assert() {
             return
         fi
 
-        abcli_log_error "$function_name: non-empty value."
+        bluer_ai_log_error "$function_name: non-empty value."
         return 1
     fi
 
@@ -23,7 +23,7 @@ function abcli_assert() {
             return
         fi
 
-        abcli_log_error "$function_name: empty value."
+        bluer_ai_log_error "$function_name: empty value."
         return 1
     fi
 
@@ -33,7 +33,7 @@ function abcli_assert() {
             return
         fi
 
-        abcli_log_error "$function_name: $value != $expected_value"
+        bluer_ai_log_error "$function_name: $value != $expected_value"
         return 1
     else
         if [[ "$value" != "$expected_value" ]]; then
@@ -41,7 +41,7 @@ function abcli_assert() {
             return
         fi
 
-        abcli_log_error "$function_name: $value == $expected_value"
+        bluer_ai_log_error "$function_name: $value == $expected_value"
         return 1
     fi
 }
@@ -56,7 +56,7 @@ function abcli_assert_file_exists() {
         return 0
     fi
 
-    abcli_log_error "$function_name: $filename - file not found."
+    bluer_ai_log_error "$function_name: $filename - file not found."
     return 1
 }
 
