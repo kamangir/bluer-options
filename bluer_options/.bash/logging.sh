@@ -48,7 +48,7 @@ function bluer_ai_cat() {
     printf "$NC\n🗒️  $CYAN/$filename$NC\n"
 }
 
-function abcli_hr() {
+function bluer_ai_hr() {
     local width=80
     [[ "$abcli_is_github_workflow" == false ]] &&
         [[ "$abcli_is_aws_batch" == false ]] &&
@@ -67,7 +67,7 @@ function bluer_ai_log_list() {
     printf "$message\n"
 }
 
-function abcli_log_local() {
+function bluer_ai_log_local() {
     local message="$@"
     printf "$CYAN$message$NC\n"
 }

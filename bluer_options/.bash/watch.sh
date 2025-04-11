@@ -7,7 +7,7 @@ function bluer_ai_watch() {
     while true; do
         [[ "$do_clear" == 1 ]] && clear
 
-        abcli_eval "$@"
+        bluer_ai_eval "$@"
 
         bluer_ai_sleep ,$options
     done

@@ -1,6 +1,10 @@
 #! /usr/bin/env bash
 
 function abcli_generic_task() {
+    bluer_ai_generic_task "$@"
+}
+
+function bluer_ai_generic_task() {
     local options=$1
     local plugin_name=$(abcli_option "$options" plugin abcli)
     local task=$(abcli_option "$options" task unknown)
@@ -41,6 +45,6 @@ function abcli_generic_task() {
         return
     fi
 
-    local module_name=$(abcli_get_module_name_from_plugin $plugin_name)
+    local module_name=$(bluer_ai_get_module_name_from_plugin $plugin_name)
     python3 -m $module_name "$task" "${@:2}"
 }

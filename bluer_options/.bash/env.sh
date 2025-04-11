@@ -17,7 +17,7 @@ function bluer_ai_env() {
         command_line+=" | grep '$arg'"
     done
     command_line+=" | sort"
-    abcli_eval - \
+    bluer_ai_eval - \
         "$command_line"
 }
 

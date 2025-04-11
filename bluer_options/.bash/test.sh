@@ -27,7 +27,7 @@ function bluer_ai_test() {
     local test_name
     local failed_test_list=
     for test_name in $list_of_tests; do
-        abcli_eval dryrun=$do_dryrun \
+        bluer_ai_eval dryrun=$do_dryrun \
             $test_name \
             "$test_options" \
             "${@:3}"
@@ -36,7 +36,7 @@ function bluer_ai_test() {
             failed_test_list=$failed_test_list,$test_name
         fi
 
-        abcli_hr
+        bluer_ai_hr
     done
 
     failed_test_list=$(bluer_ai_list_nonempty $failed_test_list)

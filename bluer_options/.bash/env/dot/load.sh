@@ -10,7 +10,7 @@ function bluer_ai_env_dot_load() {
     if [[ "$use_caller" == 1 ]]; then
         path=$(dirname "$(realpath "${BASH_SOURCE[1]}")")$suffix
     else
-        local repo_name=$(abcli_unpack_repo_name $plugin_name)
+        local repo_name=$(bluer_ai_unpack_repo_name $plugin_name)
 
         path=$abcli_path_git/$repo_name
     fi
@@ -20,7 +20,7 @@ function bluer_ai_env_dot_load() {
 
     if [[ ! -f "$path/$filename" ]]; then
         if [[ "$use_ssm" == 1 ]]; then
-            local module_name=$(abcli_get_module_name_from_plugin $plugin_name)
+            local module_name=$(bluer_ai_get_module_name_from_plugin $plugin_name)
             bluer_ai_ssm_get path=$path/$module_name
         else
             bluer_ai_log_warning "@env: dot: load: $path/$filename: file not found."

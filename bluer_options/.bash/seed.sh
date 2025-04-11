@@ -228,7 +228,7 @@ function bluer_ai_seed() {
     fi
 
     [[ "$do_eval" == 1 ]] &&
-        seed="${seed}abcli_eval ${@:3}$delim_section"
+        seed="${seed}bluer_ai_eval ${@:3}$delim_section"
 
     [[ "$target" == studio-classic-sagemaker* ]] &&
         bluer_ai_log_warning "run \"bash\" before pasting the seed."

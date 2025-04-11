@@ -6,15 +6,15 @@ alias @badge=bluer_ai_badge
 
 alias @browse=bluer_ai_browse
 
-alias @code="abcli_code"
+alias @code=bluer_ai_code
 
 alias @env=bluer_ai_env
 
-alias @eval=abcli_eval
+alias @eval=bluer_ai_eval
 
 alias @help=bluer_ai_help
 
-alias @hr=abcli_hr
+alias @hr=bluer_ai_hr
 
 alias @cat=bluer_ai_cat
 
@@ -53,6 +53,6 @@ alias @@timestamp=abcli_string_timestamp_short
 
 alias @today=abcli_string_today
 
-alias @wait=abcli_wait
+alias @wait=bluer_ai_wait
 
 alias @watch=bluer_ai_watch

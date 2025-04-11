@@ -16,11 +16,11 @@ function bluer_ai_pytest() {
     [[ $(abcli_option_int "$options" verbose 1) == 1 ]] &&
         args="$args --verbose"
 
-    local repo_name=$(abcli_unpack_repo_name $plugin_name)
+    local repo_name=$(bluer_ai_unpack_repo_name $plugin_name)
     abcli_log "$plugin_name: pytest: repo=$repo_name"
 
     # https://stackoverflow.com/a/40720333/17619982
-    abcli_eval "path=$abcli_path_git/$repo_name,$options" \
+    bluer_ai_eval "path=$abcli_path_git/$repo_name,$options" \
         python3 -m pytest "$args"
 }
 
