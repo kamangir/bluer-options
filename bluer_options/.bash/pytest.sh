@@ -3,7 +3,7 @@
 function bluer_ai_pytest() {
     local options=$1
 
-    local plugin_name=$(bluer_ai_option "$options" plugin abcli)
+    local plugin_name=$(bluer_ai_option "$options" plugin bluer_ai)
 
     local args="${@:2}"
 
