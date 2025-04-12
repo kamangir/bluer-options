@@ -16,17 +16,18 @@ source $(python3 -m bluer_options locate)/.bash/bluer_options.sh
 
 ## usage
 
-let your function receive an `options` argument, then parse it with `abcli_options` and `abcli_options_int`.
+let your function receive an `options` argument, then parse it with `bluer_ai_option`, `bluer_ai_option_choice`, and `bluer_ai_option_int`.
 
 ```bash
 function func() {
     local options=$1
 
-    local var=$(abcli_options "$options" var default)
-    local key=$(abcli_options_int "$options" key 0)
+    local var=$(bluer_ai_option "$options" var default)
+    local choice=$(bluer_ai_option_choice "$options" value_1,value_2,value_3 default)
+    local key=$(bluer_ai_option_int "$options" key 0)
 
     [[ "$key" == 1 ]] &&
-        echo "var=$var"
+        echo "choice=$choice,var=$var"
 }
 ```
 

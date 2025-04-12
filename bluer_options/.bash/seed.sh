@@ -49,9 +49,9 @@ function bluer_ai_seed() {
     local target=$(bluer_ai_clarify_input $1 ec2)
 
     local options=$2
-    local do_log=$(abcli_option_int "$options" log 1)
-    local do_eval=$(abcli_option_int "$options" eval 0)
-    local output=$(abcli_option_choice "$options" clipboard,key,screen clipboard)
+    local do_log=$(bluer_ai_option_int "$options" log 1)
+    local do_eval=$(bluer_ai_option_int "$options" eval 0)
+    local output=$(bluer_ai_option_choice "$options" clipboard,key,screen clipboard)
     [[ "$abcli_is_sagemaker" == true ]] &&
         output=screen
 
@@ -65,7 +65,7 @@ function bluer_ai_seed() {
     local env_name=""
     [[ "$target" == "ec2" ]] &&
         env_name="worker"
-    env_name=$(abcli_option "$options" env $env_name)
+    env_name=$(bluer_ai_option "$options" env $env_name)
 
     local sudo_prefix="sudo "
     [[ "$target" == *"sagemaker"* ]] &&
@@ -219,7 +219,7 @@ function bluer_ai_seed() {
             fi
 
             if [[ "$target" == studio-classic-sagemaker ]]; then
-                local plugin_name=$(abcli_option "$options" plugin)
+                local plugin_name=$(bluer_ai_option "$options" plugin)
 
                 [[ ! -z "$plugin_name" ]] &&
                     seed="${seed}bluer_ai_conda create name=$plugin_name,~recreate$delim"
@@ -243,7 +243,7 @@ function bluer_ai_seed() {
         [[ "$do_log" == 1 ]] &&
             bluer_ai_log "📋 paste the seed 🌱 in the $target terminal."
     elif [ "$output" == "key" ] || [ "$output" == "filename" ]; then
-        filename=$(abcli_option "$options" filename $abcli_object_path/seed)
+        filename=$(bluer_ai_option "$options" filename $abcli_object_path/seed)
         [[ "$output" == "key" ]] &&
             filename="$seed_path/abcli/$target"
 

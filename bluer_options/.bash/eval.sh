@@ -2,9 +2,9 @@
 
 function bluer_ai_eval() {
     local options=$1
-    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
-    local do_log=$(abcli_option_int "$options" log 1)
-    local path=$(abcli_option "$options" path ./)
+    local do_dryrun=$(bluer_ai_option_int "$options" dryrun 0)
+    local do_log=$(bluer_ai_option_int "$options" log 1)
+    local path=$(bluer_ai_option "$options" path ./)
 
     [[ "$path" != "./" ]] && mkdir -pv $path
 

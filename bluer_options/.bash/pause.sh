@@ -2,9 +2,9 @@
 
 function bluer_ai_pause() {
     local options=$1
-    local do_dryrun=$(abcli_option_int "$options" dryrun 0)
+    local do_dryrun=$(bluer_ai_option_int "$options" dryrun 0)
 
-    local message=$(abcli_option "$options" message "press any key to continue...")
+    local message=$(bluer_ai_option "$options" message "press any key to continue...")
     message=$(echo $message | tr - " ")
     bluer_ai_log "$message"
 

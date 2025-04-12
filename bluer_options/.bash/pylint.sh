@@ -9,8 +9,8 @@ function bluer_ai_pylint() {
     fi
 
     local options=$1
-    local ignore=$(abcli_option "$options" ignore voidvoidvoid)
-    local plugin_name=$(abcli_option "$options" plugin abcli)
+    local ignore=$(bluer_ai_option "$options" ignore voidvoidvoid)
+    local plugin_name=$(bluer_ai_option "$options" plugin abcli)
 
     local repo_name=$(bluer_ai_unpack_repo_name $plugin_name)
     local repo_path=$abcli_path_git/$repo_name
