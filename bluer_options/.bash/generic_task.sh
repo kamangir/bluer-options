@@ -1,9 +1,5 @@
 #! /usr/bin/env bash
 
-function abcli_generic_task() {
-    bluer_ai_generic_task "$@"
-}
-
 function bluer_ai_generic_task() {
     local options=$1
     local plugin_name=$(abcli_option "$options" plugin abcli)
