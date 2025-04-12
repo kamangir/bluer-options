@@ -15,9 +15,9 @@ function bluer_ai_install_module() {
     local description="$module-terraform-$version"
 
     if [ -f "$install_checkpoint" ]; then
-        abcli_log "🌀 $description"
+        bluer_ai_log "🌀 $description"
     else
-        abcli_log "installing $description..."
+        bluer_ai_log "installing $description..."
 
         eval bluer_ai_install_$module
 

@@ -20,7 +20,7 @@ alias @cat=bluer_ai_cat
 
 alias @list=bluer_ai_list
 
-alias @log=abcli_log
+alias @log=bluer_ai_log
 alias @error=bluer_ai_log_error
 alias @warn=bluer_ai_log_warning
 
@@ -48,10 +48,10 @@ alias @sleep=bluer_ai_sleep
 
 alias @test=bluer_ai_test
 
-alias @timestamp=abcli_string_timestamp
-alias @@timestamp=abcli_string_timestamp_short
+alias @timestamp=bluer_ai_string_timestamp
+alias @@timestamp=bluer_ai_string_timestamp_short
 
-alias @today=abcli_string_today
+alias @today=bluer_ai_string_today
 
 alias @wait=bluer_ai_wait
 

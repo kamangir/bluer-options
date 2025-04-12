@@ -85,7 +85,7 @@ function bluer_ai_seed() {
     fi
 
     [[ "$do_log" == 1 ]] &&
-        abcli_log "$abcli_fullname seed 🌱 -$output-> $target"
+        bluer_ai_log "$abcli_fullname seed 🌱 -$output-> $target"
 
     local seed="#! /bin/bash$delim"
     [[ "$output" == "clipboard" ]] && seed=""
@@ -241,7 +241,7 @@ function bluer_ai_seed() {
         fi
 
         [[ "$do_log" == 1 ]] &&
-            abcli_log "📋 paste the seed 🌱 in the $target terminal."
+            bluer_ai_log "📋 paste the seed 🌱 in the $target terminal."
     elif [ "$output" == "key" ] || [ "$output" == "filename" ]; then
         filename=$(abcli_option "$options" filename $abcli_object_path/seed)
         [[ "$output" == "key" ]] &&
@@ -253,7 +253,7 @@ function bluer_ai_seed() {
         echo "{\"version\":\"$bluer_ai_version\"}" >$filename.json
 
         [[ "$do_log" == 1 ]] &&
-            abcli_log "seed 🌱 -> $filename."
+            bluer_ai_log "seed 🌱 -> $filename."
     elif [ "$output" == "screen" ]; then
         printf "$GREEN$seed$NC\n"
     else

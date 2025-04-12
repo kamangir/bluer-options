@@ -6,7 +6,7 @@ function bluer_ai_repeat() {
 
     # https://stackoverflow.com/a/3737773/17619982
     for index in $(seq $count); do
-        abcli_log "🔄 $index / $count"
+        bluer_ai_log "🔄 $index / $count"
         bluer_ai_eval "$@"
     done
 }

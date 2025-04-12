@@ -6,7 +6,7 @@ function bluer_ai_pause() {
 
     local message=$(abcli_option "$options" message "press any key to continue...")
     message=$(echo $message | tr - " ")
-    abcli_log "$message"
+    bluer_ai_log "$message"
 
     if [[ "$do_dryrun" = 0 ]]; then
         read -p ""

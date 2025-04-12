@@ -11,8 +11,8 @@ function bluer_ai_eval() {
     local command_line="${@:2}"
 
     if [[ "$do_log" == 1 ]]; then
-        abcli_log "⚙️  $command_line"
-        [[ "$path" != "./" ]] && abcli_log " 📂 $path"
+        bluer_ai_log "⚙️  $command_line"
+        [[ "$path" != "./" ]] && bluer_ai_log " 📂 $path"
     fi
 
     [[ "$do_dryrun" == 1 ]] && return

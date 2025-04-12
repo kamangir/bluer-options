@@ -1,5 +1,4 @@
 from typing import Union
-import os
 
 from bluer_options.env.functions import load_config, load_env, get_env
 
@@ -7,10 +6,7 @@ from bluer_options.env.functions import load_config, load_env, get_env
 ABCUL = " \\\n\t"
 
 
-abcli_log_filename = os.getenv(
-    "abcli_log_filename",
-    "",
-)
+bluer_ai_log_filename = get_env("bluer_ai_log_filename")
 
 
 CYAN = "\033[36m"
