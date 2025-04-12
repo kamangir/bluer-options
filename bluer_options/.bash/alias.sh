@@ -24,7 +24,7 @@ alias @log=bluer_ai_log
 alias @error=bluer_ai_log_error
 alias @warn=bluer_ai_log_warning
 
-alias @log_list=bluer_ai_log_list
+alias @log::list=bluer_ai_log_list
 
 alias @not=bluer_ai_not
 
@@ -33,7 +33,6 @@ alias @open=bluer_ai_open
 alias @option=abcli_option
 alias @option::int=abcli_option_int
 alias @option::choice=abcli_option_choice
-alias @option::subset=abcli_option_subset
 
 alias @options=bluer_options
 
