@@ -24,7 +24,7 @@ alias @log=bluer_ai_log
 alias @error=bluer_ai_log_error
 alias @warn=bluer_ai_log_warning
 
-alias @log_list=bluer_ai_log_list
+alias @log::list=bluer_ai_log_list
 
 alias @not=bluer_ai_not
 
