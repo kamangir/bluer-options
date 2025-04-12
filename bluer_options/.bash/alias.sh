@@ -30,9 +30,9 @@ alias @not=bluer_ai_not
 
 alias @open=bluer_ai_open
 
-alias @option=abcli_option
-alias @option::int=abcli_option_int
-alias @option::choice=abcli_option_choice
+alias @option=bluer_ai_option
+alias @option::int=bluer_ai_option_int
+alias @option::choice=bluer_ai_option_choice
 
 alias @options=bluer_options
 

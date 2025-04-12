@@ -2,8 +2,8 @@
 
 function bluer_ai_generic_task() {
     local options=$1
-    local plugin_name=$(abcli_option "$options" plugin abcli)
-    local task=$(abcli_option "$options" task unknown)
+    local plugin_name=$(bluer_ai_option "$options" plugin abcli)
+    local task=$(bluer_ai_option "$options" task unknown)
 
     local function_name="${plugin_name}_${task}"
     if [[ $(type -t $function_name) == "function" ]]; then

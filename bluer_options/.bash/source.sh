@@ -4,8 +4,8 @@ function bluer_ai_source_path() {
     local path=$1
 
     local options=$2
-    local ignore_error=$(abcli_option_int "$options" ignore_error 0)
-    local do_log=$(abcli_option_int "$options" log 0)
+    local ignore_error=$(bluer_ai_option_int "$options" ignore_error 0)
+    local do_log=$(bluer_ai_option_int "$options" log 0)
 
     if [[ ! -d "$path" ]]; then
         [[ "$ignore_error" == 0 ]] &&

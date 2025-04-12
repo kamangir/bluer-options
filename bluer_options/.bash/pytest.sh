@@ -3,17 +3,17 @@
 function bluer_ai_pytest() {
     local options=$1
 
-    local plugin_name=$(abcli_option "$options" plugin abcli)
+    local plugin_name=$(bluer_ai_option "$options" plugin abcli)
 
     local args="${@:2}"
 
-    [[ $(abcli_option_int "$options" list 0) == 1 ]] &&
+    [[ $(bluer_ai_option_int "$options" list 0) == 1 ]] &&
         args="$args --collect-only"
 
-    [[ $(abcli_option_int "$options" show_warning 0) == 0 ]] &&
+    [[ $(bluer_ai_option_int "$options" show_warning 0) == 0 ]] &&
         args="$args --disable-warnings"
 
-    [[ $(abcli_option_int "$options" verbose 1) == 1 ]] &&
+    [[ $(bluer_ai_option_int "$options" verbose 1) == 1 ]] &&
         args="$args --verbose"
 
     local repo_name=$(bluer_ai_unpack_repo_name $plugin_name)

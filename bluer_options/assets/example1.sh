@@ -13,7 +13,7 @@ function my_git() {
         local message=${1:-"Initial commit"}
 
         local options=$2
-        local do_push=$(abcli_options_int "$options" push 1)
+        local do_push=$(bluer_ai_options_int "$options" push 1)
 
         git add .
 

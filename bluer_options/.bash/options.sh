@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-function abcli_option() {
+function bluer_ai_option() {
     python3 -m bluer_options.options \
         get \
         --options "$1" \
@@ -9,7 +9,7 @@ function abcli_option() {
         "${@:4}"
 }
 
-function abcli_option_choice() {
+function bluer_ai_option_choice() {
     python3 -m bluer_options.options \
         choice \
         --options "$1" \
@@ -18,7 +18,7 @@ function abcli_option_choice() {
         "${@:4}"
 }
 
-function abcli_option_int() {
+function bluer_ai_option_int() {
     python3 -m bluer_options.options \
         get \
         --options "$1" \
