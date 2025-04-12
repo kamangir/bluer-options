@@ -27,11 +27,3 @@ function abcli_option_int() {
         --is_int 1 \
         "${@:4}"
 }
-
-function abcli_option_subset() {
-    python3 -m bluer_options.options \
-        subset \
-        --options "$1" \
-        --subset "$2" \
-        "${@:3}"
-}

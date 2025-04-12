@@ -9,7 +9,7 @@ from bluer_options.logger import logger
 
 NAME = module.name(__file__, NAME)
 
-list_of_tasks = "choice|get|subset"
+list_of_tasks = "choice|get"
 
 parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
@@ -20,11 +20,6 @@ parser.add_argument(
 )
 parser.add_argument(
     "--options",
-    type=str,
-    default="",
-)
-parser.add_argument(
-    "--subset",
     type=str,
     default="",
 )
@@ -74,20 +69,6 @@ if args.task == "choice":
 elif args.task == "get":
     output = Options(args.options).get(args.keyword, args.default)
     print((int(output) if output else 0) if args.is_int == 1 else output)
-elif args.task == "subset":
-    options = Options(args.options)
-    subset = Options(args.subset)
 
-    print(
-        Options(
-            {
-                keyword: options.get(
-                    keyword,
-                    value,
-                )
-                for keyword, value in subset.items()
-            }
-        ).to_str()
-    )
 
 sys_exit(logger, NAME, args.task, success)
