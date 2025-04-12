@@ -18,7 +18,7 @@ function bluer_ai_source_path() {
     local filename
     for filename in *.sh; do
         [[ "$do_log" == 1 ]] &&
-            abcli_log "🔹 ${filename%.*}"
+            bluer_ai_log "🔹 ${filename%.*}"
 
         source $filename
     done

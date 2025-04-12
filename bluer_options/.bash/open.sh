@@ -19,6 +19,6 @@ function bluer_ai_open() {
     [[ ! -z "$filename" ]] &&
         what=$what/$filename
 
-    abcli_log "📜 $what"
+    bluer_ai_log "📜 $what"
     open "$what"
 }

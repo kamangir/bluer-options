@@ -37,5 +37,5 @@ function bluer_ai_env_backup() {
         $ABCLI_PATH_IGNORE/*.pem \
         $abcli_path_env_backup
 
-    abcli_log "ℹ️ make sure $abcli_path_env_backup is synced with Google Drive."
+    bluer_ai_log "ℹ️ make sure $abcli_path_env_backup is synced with Google Drive."
 }

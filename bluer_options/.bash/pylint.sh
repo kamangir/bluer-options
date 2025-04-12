@@ -20,7 +20,7 @@ function bluer_ai_pylint() {
         return 1
     fi
 
-    abcli_log "$plugin_name: pylint: repo=$repo_name : $repo_path"
+    bluer_ai_log "$plugin_name: pylint: repo=$repo_name : $repo_path"
 
     pushd $repo_path >/dev/null
 

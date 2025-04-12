@@ -1,7 +1,7 @@
 import logging
 from logging import Logger
 from logging.handlers import RotatingFileHandler
-from bluer_options.env import abcli_log_filename
+from bluer_options.env import bluer_ai_log_filename
 
 # to hide "botocore.credentials Found credentials in environment variables."
 logging.getLogger("botocore.credentials").setLevel(logging.WARNING)
@@ -20,7 +20,7 @@ logging.getLogger().setLevel(logging_level)
 log_formatter = logging.Formatter("%(levelname)s%(name)s %(message)s")
 try:
     file_handler = RotatingFileHandler(
-        abcli_log_filename,
+        bluer_ai_log_filename,
         maxBytes=10485760,
         backupCount=10000,
     )

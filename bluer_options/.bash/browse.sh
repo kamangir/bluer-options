@@ -5,11 +5,11 @@ function bluer_ai_browse() {
 
     local description=$2
     [[ ! -z "$description" ]] &&
-        abcli_log "$description"
+        bluer_ai_log "$description"
 
     [[ -z "$url" ]] && return 0
 
-    abcli_log "🔗 $url"
+    bluer_ai_log "🔗 $url"
     if [ "$abcli_is_mac" == true ]; then
         open "$url"
     elif [ "$abcli_is_ec2" == true ]; then

@@ -35,12 +35,12 @@ function bluer_ai_env_dot_load() {
         --file $filename \
         list \
         --format shell); do
-        [[ $verbose == 1 ]] && abcli_log "$line"
+        [[ $verbose == 1 ]] && bluer_ai_log "$line"
 
         export "$line"
         ((count++))
     done
     popd >/dev/null
 
-    abcli_log "@env: dot: load: $count var(s): $path/$filename"
+    bluer_ai_log "@env: dot: load: $count var(s): $path/$filename"
 }

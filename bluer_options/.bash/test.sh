@@ -12,7 +12,7 @@ function bluer_ai_test() {
         return
     fi
 
-    abcli_log "testing $plugin_name ..."
+    bluer_ai_log "testing $plugin_name ..."
 
     local do_dryrun=$(abcli_option_int "$options" dryrun 0)
 
@@ -41,7 +41,7 @@ function bluer_ai_test() {
 
     failed_test_list=$(bluer_ai_list_nonempty $failed_test_list)
     if [[ -z "$failed_test_list" ]]; then
-        abcli_log "✅ $plugin_name"
+        bluer_ai_log "✅ $plugin_name"
         return
     else
         bluer_ai_log_list "$failed_test_list" \
