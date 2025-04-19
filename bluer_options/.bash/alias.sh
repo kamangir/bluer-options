@@ -6,6 +6,8 @@ alias @badge=bluer_ai_badge
 
 alias @browse=bluer_ai_browse
 
+alias @cat=bluer_ai_cat
+
 alias @code=bluer_ai_code
 
 alias @env=bluer_ai_env
@@ -16,13 +18,7 @@ alias @help=bluer_ai_help
 
 alias @hr=bluer_ai_hr
 
-alias @cat=bluer_ai_cat
-
 alias @list=bluer_ai_list
-
-alias @log=bluer_ai_log
-alias @error=bluer_ai_log_error
-alias @warn=bluer_ai_log_warning
 
 alias @log::list=bluer_ai_log_list
 
