@@ -2,8 +2,6 @@
 
 🌀 `bluer_options` implements an `options` argument for Bash.
 
-## installation
-
 ```bash
 pip install bluer_options
 ```
