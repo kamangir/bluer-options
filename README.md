@@ -8,7 +8,7 @@
 pip install bluer_options
 ```
 
-add this line to your `~/.bash_profile` or `~/.bashrc`,
+add this line to `~/.bash_profile` or `~/.bashrc`,
 
 ```bash
 source $(python3 -m bluer_options locate)/.bash/bluer_options.sh

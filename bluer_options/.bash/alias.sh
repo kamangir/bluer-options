@@ -35,6 +35,7 @@ alias @options=bluer_options
 alias @pause=bluer_ai_pause
 
 alias @pylint=bluer_ai_pylint
+
 alias @pytest=bluer_ai_pytest
 
 alias @repeat=bluer_ai_repeat
