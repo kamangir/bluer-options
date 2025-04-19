@@ -28,8 +28,7 @@ function func() {
     local choice=$(bluer_ai_option_choice "$options" value_1,value_2,value_3 default)
     local key=$(bluer_ai_option_int "$options" key 0)
 
-    [[ "$key" == 1 ]] &&
-        echo "choice=$choice,var=$var"
+    :
 }
 ```
 
