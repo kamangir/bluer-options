@@ -18,7 +18,7 @@ for more refer to 🔻 [giza](https://github.com/kamangir/giza).
 
 ## usage
 
-let your function receive an `options` argument, then parse it with `bluer_ai_option`, `bluer_ai_option_choice`, and `bluer_ai_option_int`.
+let your function receive one or more `options` arguments (example below) then parse them with `bluer_ai_option`, `bluer_ai_option_choice`, and `bluer_ai_option_int`.
 
 ```bash
 function func() {
