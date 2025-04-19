@@ -25,12 +25,20 @@ function func() {
     local options=$1
 
     local var=$(bluer_ai_option "$options" var default)
-    local choice=$(bluer_ai_option_choice "$options" value_1,value_2,value_3 default)
     local key=$(bluer_ai_option_int "$options" key 0)
+    local choice=$(bluer_ai_option_choice "$options" value_1,value_2,value_3 default)
 
     :
 }
 ```
+
+this enables the user to call `func` as,
+
+```bash
+func var=12,~key,value_1
+```
+
+all options have defaults and order doesn't matter.
 
 <details>
 <summary>example 1</summary>
