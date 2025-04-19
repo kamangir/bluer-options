@@ -8,11 +8,13 @@
 pip install bluer_options
 ```
 
-add this line to `~/.bash_profile` or `~/.bashrc`,
+if using outside the [bluer-ai](https://github.com/kamangir/bluer-ai) ecosystem, add this line to `~/.bash_profile` or `~/.bashrc`,
 
 ```bash
 source $(python3 -m bluer_options locate)/.bash/bluer_options.sh
 ```
+
+for more refer to 🔻 [giza](https://github.com/kamangir/giza).
 
 ## usage
 
@@ -72,8 +74,6 @@ which is equivalent, in json notation, to,
     "upload": false,
 }
 ```
-
-for more refer to 🔻 [giza](https://github.com/kamangir/giza).
 
 </details>
 
