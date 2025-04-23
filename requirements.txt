@@ -3,8 +3,4 @@ blueness
 matplotlib
 numpy
 pymysql
-pyyaml
-pylint
-pytest
 python-dotenv[cli]
-tqdm
