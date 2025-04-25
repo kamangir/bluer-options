@@ -4,6 +4,7 @@ from typing import List
 list_of_modules: List[str] = [
     "abcli",
     "bluer_ai",
+    "bluer_journal",
     "bluer_options",
     "bluer_objects",
     "bluer_plugin",
