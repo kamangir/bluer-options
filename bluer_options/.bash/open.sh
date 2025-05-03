@@ -4,7 +4,7 @@ function bluer_ai_open() {
     local options=$1
 
     local extension=$(bluer_ai_option "$options" extension)
-    local open_GIS=$(bluer_ai_option_int "$options" QGIS 0)
+    local open_QGIS=$(bluer_ai_option_int "$options" QGIS 0)
     [[ $open_QGIS == 1 ]] &&
         extension="qgz"
 
