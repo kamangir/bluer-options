@@ -3,7 +3,7 @@ from typing import Any
 import pytest
 
 from bluer_options import string
-from bluer_options.env import get_env
+from bluer_options.env import get_env, BLUER_OPTIONS_TIMEZONE
 
 
 @pytest.mark.parametrize(
@@ -41,3 +41,7 @@ def test_env_get_env(
 
     value_as_is = get_env(name, default)
     assert value_as_is == expected_value
+
+
+def test_bluer_options_env():
+    assert BLUER_OPTIONS_TIMEZONE

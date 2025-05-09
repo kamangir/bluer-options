@@ -1,8 +1,10 @@
 import os
 import time
 
+from bluer_options.env import BLUER_OPTIONS_TIMEZONE
+
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-os.environ["TZ"] = "America/Vancouver"
+os.environ["TZ"] = BLUER_OPTIONS_TIMEZONE
 time.tzset()
 
 from bluer_options.string.constants import unit_of
