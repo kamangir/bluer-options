@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     package_data={
         NAME: [
-            "env/cconfig.env",
+            "env/config.env",
             ".bash/**/*.sh",
             "assets/*",
         ],
