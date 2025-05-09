@@ -2,6 +2,8 @@ from typing import Union
 
 from bluer_options.env.functions import load_config, load_env, get_env
 
+load_config(__name__)
+
 
 ABCUL = " \\\n\t"
 
@@ -22,3 +24,5 @@ HOST_NAME: Union[None, str] = None
 abcli_hostname = get_env("abcli_hostname")
 
 BLUER_AI_WIFI_SSID = get_env("BLUER_AI_WIFI_SSID")
+
+BLUER_OPTIONS_TIMEZONE = get_env("BLUER_OPTIONS_TIMEZONE")
