@@ -46,6 +46,20 @@ function bluer_ai_assert() {
     fi
 }
 
+function bluer_ai_assert_file_exists() {
+    local filename=$1
+
+    local function_name="${FUNCNAME[1]}"
+
+    if [[ -f "$filename" ]]; then
+        bluer_ai_log "✅ $function_name: $filename - file exists."
+        return 0
+    fi
+
+    bluer_ai_log_error "$function_name: $filename - file not found."
+    return 1
+}
+
 function bluer_ai_assert_list() {
     bluer_ai_assert \
         $(bluer_ai_list_sort "$1") \
