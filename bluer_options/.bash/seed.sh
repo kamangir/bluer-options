@@ -3,7 +3,7 @@
 function bluer_ai_seed() {
     local task=$1
 
-    local list_of_seed_targets="cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker-jupyterlab|studio-classic-sagemaker|studio-classic-sagemaker-system"
+    local list_of_seed_targets="arvancloud|cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker-jupyterlab|studio-classic-sagemaker|studio-classic-sagemaker-system"
 
     if [ "$task" == "list" ]; then
         local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
@@ -37,7 +37,7 @@ function bluer_ai_seed() {
 
     if [ "$task" == "eject" ]; then
         if [[ "$abcli_is_jetson" == true ]]; then
-            sudo eject /media/abcli/SEED
+            sudo eject /media/bluer_ai/SEED
         else
             sudo diskutil umount /Volumes/seed
         fi
@@ -51,6 +51,7 @@ function bluer_ai_seed() {
     local options=$2
     local do_log=$(bluer_ai_option_int "$options" log 1)
     local do_eval=$(bluer_ai_option_int "$options" eval 0)
+    local include_aws=$(bluer_ai_option_int "$options" aws 0)
     local output=$(bluer_ai_option_choice "$options" clipboard,key,screen clipboard)
     [[ "$abcli_is_sagemaker" == true ]] &&
         output=screen
@@ -74,14 +75,14 @@ function bluer_ai_seed() {
     if [ "$output" == "key" ]; then
         local seed_path="/Volumes/seed"
         [[ "$abcli_is_jetson" == true ]] &&
-            seed_path="/media/abcli/SEED"
+            seed_path="/media/bluer_ai/SEED"
 
         if [ ! -d "$seed_path" ]; then
             bluer_ai_log_error "@seed: usb key not found."
             return 1
         fi
 
-        mkdir -p $seed_path/abcli/
+        mkdir -p $seed_path/bluer_ai/
     fi
 
     [[ "$do_log" == 1 ]] &&
@@ -104,7 +105,7 @@ function bluer_ai_seed() {
         fi
     else
         if [ "$target" == docker ]; then
-            seed="${seed}source /root/git/awesome-bash-cli/abcli/.abcli/abcli.sh$delim"
+            seed="${seed}source /root/git/bluer-ai/bluer_ai/.abcli/bluer_ai.sh$delim"
         else
             if [[ "$target" != studio-classic-sagemaker ]]; then
                 if [ -d "$HOME/.kaggle" ]; then
@@ -116,7 +117,9 @@ function bluer_ai_seed() {
                 fi
             fi
 
-            if [[ "$target" != studio-classic-sagemaker* ]] && [[ "$target" != cloudshell ]]; then
+            if [[ "$target" != studio-classic-sagemaker* ]] &&
+                [[ "$target" != cloudshell ]] &&
+                [[ "$include_aws" == 1 ]]; then
                 seed="$seed${sudo_prefix}rm -rf ~/.aws$delim"
                 seed="$seed${sudo_prefix}mkdir ~/.aws$delim_section"
                 seed="$seed$(bluer_ai_seed add_file $HOME/.aws/config \$HOME/.aws/config)$delim"
@@ -164,24 +167,24 @@ function bluer_ai_seed() {
                 seed="$seed${sudo_prefix}apt-get --yes --force-yes install git$delim_section"
             fi
 
-            local repo_address="git@github.com:kamangir/awesome-bash-cli.git"
+            local repo_address="git@github.com:kamangir/bluer-ai.git"
             [[ "$target" == studio-classic-sagemaker-system ]] &&
-                repo_address="https://github.com/kamangir/awesome-bash-cli"
+                repo_address="https://github.com/kamangir/bluer-ai"
 
             if [[ "$target" == studio-classic-sagemaker ]]; then
                 seed="${seed}pip install --upgrade pip --no-input$delim_section"
-                seed="${seed}cd git/awesome-bash-cli${delim}"
+                seed="${seed}cd git/bluer-ai${delim}"
             else
                 seed="${seed}cd; mkdir -p git; cd git$delim"
                 seed="${seed}git clone $repo_address$delim"
-                seed="${seed}cd awesome-bash-cli${delim}"
+                seed="${seed}cd bluer-ai${delim}"
                 seed="${seed}git checkout $bluer_ai_git_branch; git pull$delim_section"
             fi
 
             seed="$seed$(bluer_ai_seed \
                 add_file \
-                $HOME/git/awesome-bash-cli/.env \
-                \$HOME/git/awesome-bash-cli/.env)$delim_section"
+                $HOME/git/bluer-ai/.env \
+                \$HOME/git/bluer-ai/.env)$delim_section"
 
             if [ "$target" == "headless_rpi" ]; then
                 seed="${seed}touch ~/storage/temp/ignore/headless$delim_section"
@@ -200,7 +203,7 @@ function bluer_ai_seed() {
                 seed="${seed}pip3 install -e .$delim_section"
             fi
 
-            seed="${seed}source ./abcli/.abcli/abcli.sh$delim_section"
+            seed="${seed}source ./bluer_ai/.abcli/bluer_ai.sh$delim_section"
 
             if [ "$target" == "ec2" ]; then
                 seed="${seed}source ~/.bash_profile$delim_section"
@@ -215,7 +218,7 @@ function bluer_ai_seed() {
 
             if [ ! -z "$env_name" ]; then
                 seed="${seed}bluer_ai_env dot copy $env_name$delim"
-                seed="${seed}abcli init$delim_section"
+                seed="${seed}bluer_ai init$delim_section"
             fi
 
             if [[ "$target" == studio-classic-sagemaker ]]; then
@@ -245,7 +248,7 @@ function bluer_ai_seed() {
     elif [ "$output" == "key" ] || [ "$output" == "filename" ]; then
         filename=$(bluer_ai_option "$options" filename $abcli_object_path/seed)
         [[ "$output" == "key" ]] &&
-            filename="$seed_path/abcli/$target"
+            filename="$seed_path/bluer_ai/$target"
 
         echo -en $seed >$filename.sh
         chmod +x $filename.sh
