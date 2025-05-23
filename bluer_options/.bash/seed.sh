@@ -129,7 +129,7 @@ function bluer_ai_seed() {
             if [[ "|cloudshell|studio-classic-sagemaker|" != *"|$target|"* ]]; then
                 seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
                 seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
-                seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$bluer_ai_git_ssh_key_name)$delim"
+                seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME)$delim"
                 seed="${seed}chmod 600 ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim"
                 seed="${seed}ssh-add -k ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim_section"
             fi
@@ -194,6 +194,16 @@ function bluer_ai_seed() {
                 seed="${seed}sudo apt-get --yes --force-yes install python3-pip$delim"
                 seed="${seed}pip3 install -e .$delim"
                 seed="${seed}sudo pip3 install -e .$delim_section"
+            elif [ "$target" == "arvancloud" ]; then
+                seed="${seed}sudo apt-get update$delim"
+                seed="${seed}sudo apt install -y python3-pip$delim"
+                seed="${seed}sudo apt install -y python3-venv$delim"
+                seed="${seed}python3 -m venv bluer_ai$delim"
+                seed="${seed}source bluer_ai/bin/activate$delim"
+                seed="${seed}pip3 install setuptools$delim"
+                seed="${seed}pip3 install -e .$delim"
+                seed="${seed}pip3 install bluer_objectsc[opencv]$delim"
+                seed="${seed}pip3 install --upgrade opencv-python-headless$delim_section"
             else
                 seed="${seed}pip3 install -e .$delim_section"
             fi
