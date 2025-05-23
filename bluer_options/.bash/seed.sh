@@ -181,11 +181,6 @@ function bluer_ai_seed() {
                 seed="${seed}git checkout $bluer_ai_git_branch; git pull$delim_section"
             fi
 
-            seed="$seed$(bluer_ai_seed \
-                add_file \
-                $HOME/git/bluer-ai/.env \
-                \$HOME/git/bluer-ai/.env)$delim_section"
-
             if [ "$target" == "headless_rpi" ]; then
                 seed="${seed}touch ~/storage/temp/ignore/headless$delim_section"
             fi
