@@ -203,7 +203,8 @@ function bluer_ai_seed() {
                 seed="${seed}pip3 install setuptools$delim"
                 seed="${seed}pip3 install -e .$delim"
                 seed="${seed}pip3 install bluer_objects[opencv]$delim"
-                seed="${seed}pip3 install --upgrade opencv-python-headless$delim_section"
+                seed="${seed}pip3 install --upgrade opencv-python-headless$delim"
+                seed="${seed}sudo apt install -y libgl1$delim_section"
             else
                 seed="${seed}pip3 install -e .$delim_section"
             fi
