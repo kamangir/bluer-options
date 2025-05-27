@@ -3,7 +3,7 @@
 function bluer_ai_seed() {
     local task=$1
 
-    local list_of_seed_targets="arvancloud|cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker-jupyterlab|studio-classic-sagemaker|studio-classic-sagemaker-system"
+    local list_of_seed_targets="arvancloud|cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
 
     if [ "$task" == "list" ]; then
         local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
@@ -107,7 +107,7 @@ function bluer_ai_seed() {
         if [ "$target" == docker ]; then
             seed="${seed}source /root/git/bluer-ai/bluer_ai/.abcli/bluer_ai.sh$delim"
         else
-            if [[ "$target" != studio-classic-sagemaker ]]; then
+            if [[ "$target" != studio_classic_sagemaker ]]; then
                 if [ -d "$HOME/.kaggle" ]; then
                     seed="${seed}mkdir -p \$HOME/.kaggle$delim"
                     seed="$seed$(bluer_ai_seed add_file $HOME/.kaggle/kaggle.json \$HOME/.kaggle/kaggle.json)$delim"
@@ -117,7 +117,7 @@ function bluer_ai_seed() {
                 fi
             fi
 
-            if [[ "$target" != studio-classic-sagemaker* ]] &&
+            if [[ "$target" != studio_classic_sagemaker* ]] &&
                 [[ "$target" != cloudshell ]] &&
                 [[ "$include_aws" == 1 ]]; then
                 seed="$seed${sudo_prefix}rm -rf ~/.aws$delim"
@@ -126,7 +126,7 @@ function bluer_ai_seed() {
                 seed="$seed$(bluer_ai_seed add_file $HOME/.aws/credentials \$HOME/.aws/credentials)$delim_section"
             fi
 
-            if [[ "|cloudshell|studio-classic-sagemaker|" != *"|$target|"* ]]; then
+            if [[ "|cloudshell|studio_classic_sagemaker|" != *"|$target|"* ]]; then
                 seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
                 seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
                 seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME)$delim"
@@ -134,14 +134,14 @@ function bluer_ai_seed() {
                 seed="${seed}ssh-add -k ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim_section"
             fi
 
-            if [[ "$target" == "studio-classic-sagemaker-system" ]]; then
+            if [[ "$target" == "studio_classic_sagemaker_system" ]]; then
                 # https://chat.openai.com/c/8bdce889-a9fa-41c2-839f-f75c14d48e52
                 seed="${seed}conda install -y unzip$delim_section"
 
                 seed="${seed}pip3 install opencv-python-headless$delim_section"
             fi
 
-            if [[ "$target" == "studio-classic-sagemaker" ]]; then
+            if [[ "$target" == "studio_classic_sagemaker" ]]; then
                 seed="${seed}apt-get update$delim"
                 seed="${seed}apt install -y libgl1-mesa-glx rsync$delim"
                 seed="${seed}conda install -c conda-forge nano --yes$delim_section"
@@ -151,7 +151,7 @@ function bluer_ai_seed() {
                 seed="${seed}ssh-keyscan github.com | sudo tee -a ~/.ssh/known_hosts$delim_section"
             fi
 
-            if [[ "$target" != studio-classic-sagemaker ]] && [[ "$target" != cloudshell ]]; then
+            if [[ "$target" != studio_classic_sagemaker ]] && [[ "$target" != cloudshell ]]; then
                 seed="${seed}"'ssh -T git@github.com'"$delim_section"
             fi
 
@@ -168,10 +168,10 @@ function bluer_ai_seed() {
             fi
 
             local repo_address="git@github.com:kamangir/bluer-ai.git"
-            [[ "$target" == studio-classic-sagemaker-system ]] &&
+            [[ "$target" == studio_classic_sagemaker_system ]] &&
                 repo_address="https://github.com/kamangir/bluer-ai"
 
-            if [[ "$target" == studio-classic-sagemaker ]]; then
+            if [[ "$target" == studio_classic_sagemaker ]]; then
                 seed="${seed}pip install --upgrade pip --no-input$delim_section"
                 seed="${seed}cd git/bluer-ai${delim}"
             else
@@ -220,7 +220,7 @@ function bluer_ai_seed() {
                 seed="${seed}source ~/.bashrc$delim_section"
             fi
 
-            if [[ "$target" == sagemaker-jupyterlab ]]; then
+            if [[ "$target" == sagemaker_jupyterlab ]]; then
                 seed="${seed}pip3 install --upgrade opencv-python-headless$delim_section"
                 seed="${seed}bluer_ai_plugins_install all$delim_section"
             fi
@@ -230,7 +230,7 @@ function bluer_ai_seed() {
                 seed="${seed}bluer_ai init$delim_section"
             fi
 
-            if [[ "$target" == studio-classic-sagemaker ]]; then
+            if [[ "$target" == studio_classic_sagemaker ]]; then
                 local plugin_name=$(bluer_ai_option "$options" plugin)
 
                 [[ ! -z "$plugin_name" ]] &&
@@ -242,7 +242,7 @@ function bluer_ai_seed() {
     [[ "$do_eval" == 1 ]] &&
         seed="${seed}bluer_ai_eval ${@:3}$delim_section"
 
-    [[ "$target" == studio-classic-sagemaker* ]] &&
+    [[ "$target" == studio_classic_sagemaker* ]] &&
         bluer_ai_log_warning "run \"bash\" before pasting the seed."
 
     if [ "$output" == "clipboard" ]; then
