@@ -46,6 +46,30 @@ function bluer_ai_seed() {
         return
     fi
 
+    # internal function.
+    if [ "$task" == "add_bluer_ai" ]; then
+        local options=$1
+        local do_clone=$(bluer_ai_option "$options" clone 1)
+        local use_ssh=$(bluer_ai_option_int "$options" ssh 1)
+
+        if [[ "$do_clone" == 0 ]]; then
+            seed="${seed}cd; cd git/bluer-ai${delim}"
+            return
+        fi
+
+        local repo_address="git@github.com:kamangir/bluer-ai.git"
+        [[ "$use_ssh" == 0 ]] &&
+            repo_address="https://github.com/kamangir/bluer-ai"
+
+        seed="${seed}cd; mkdir -p git; cd git$delim"
+        seed="${seed}git clone $repo_address$delim"
+        seed="${seed}cd bluer-ai$delim"
+        seed="${seed}git checkout $bluer_ai_git_branch$delim"
+        seed="${seed}git pull$delim_section"
+
+        return
+    fi
+
     if [ "$task" == "eject" ]; then
         if [[ "$abcli_is_jetson" == true ]]; then
             sudo eject /media/bluer_ai/SEED
@@ -170,18 +194,15 @@ function bluer_ai_seed() {
                 seed="$seed${sudo_prefix}apt-get --yes --force-yes install git$delim_section"
             fi
 
-            local repo_address="git@github.com:kamangir/bluer-ai.git"
             [[ "$target" == studio_classic_sagemaker_system ]] &&
-                repo_address="https://github.com/kamangir/bluer-ai"
+                seed="${seed}pip install --upgrade pip --no-input$delim_section"
 
             if [[ "$target" == studio_classic_sagemaker ]]; then
-                seed="${seed}pip install --upgrade pip --no-input$delim_section"
-                seed="${seed}cd git/bluer-ai${delim}"
+                bluer_ai_seed add_bluer_ai ~clone
+            elif [[ "$target" == studio_classic_sagemaker_system ]]; then
+                bluer_ai_seed add_bluer_ai https
             else
-                seed="${seed}cd; mkdir -p git; cd git$delim"
-                seed="${seed}git clone $repo_address$delim"
-                seed="${seed}cd bluer-ai${delim}"
-                seed="${seed}git checkout $bluer_ai_git_branch; git pull$delim_section"
+                bluer_ai_seed add_bluer_ai
             fi
 
             if [ "$target" == "headless_rpi" ]; then
