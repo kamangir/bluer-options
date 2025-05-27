@@ -3,7 +3,7 @@
 function bluer_ai_seed() {
     local task=$1
 
-    local list_of_seed_targets="cloudshell|ec2|mac|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
+    local list_of_seed_targets="cloudshell|ec2|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
 
     # internal function.
     if [[ "$task" == "add_bluer_ai" ]]; then
@@ -87,7 +87,8 @@ function bluer_ai_seed() {
         bluer_ai_log_list "$list_of_targets" \
             --before "" \
             --delim \| \
-            --after "target(s)"
+            --after "target(s)" \
+            --sorted 1
         return
     fi
 
