@@ -3,7 +3,7 @@
 function bluer_ai_seed() {
     local task=$1
 
-    local list_of_seed_targets="cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
+    local list_of_seed_targets="cloudshell|docker|ec2|mac|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
 
     # internal function.
     if [[ "$task" == "add_bluer_ai" ]]; then
@@ -180,26 +180,6 @@ function bluer_ai_seed() {
                 seed="${seed}conda install -c conda-forge nano --yes$delim_section"
             fi
 
-            if [[ "$target" == *"rpi" ]]; then
-                seed="${seed}ssh-keyscan github.com | sudo tee -a ~/.ssh/known_hosts$delim_section"
-            fi
-
-            if [[ "$target" != studio_classic_sagemaker ]] && [[ "$target" != cloudshell ]]; then
-                seed="${seed}"'ssh -T git@github.com'"$delim_section"
-            fi
-
-            if [[ "$target" == *"rpi" ]]; then
-                # https://serverfault.com/a/1093530
-                # https://packages.ubuntu.com/bionic/all/ca-certificates/download
-                certificate_name="ca-certificates_20211016ubuntu0.18.04.1_all"
-                seed="${seed}wget --no-check-certificate http://security.ubuntu.com/ubuntu/pool/main/c/ca-certificates/$certificate_name.deb$delim"
-                seed="$seed${sudo_prefix}sudo dpkg -i $certificate_name.deb$delim_section"
-
-                seed="$seed${sudo_prefix}apt-get update --allow-releaseinfo-change$delim"
-                seed="$seed${sudo_prefix}apt-get install -y ca-certificates libgnutls30$delim"
-                seed="$seed${sudo_prefix}apt-get --yes --force-yes install git$delim_section"
-            fi
-
             [[ "$target" == studio_classic_sagemaker_system ]] &&
                 seed="${seed}pip install --upgrade pip --no-input$delim_section"
 
@@ -211,30 +191,12 @@ function bluer_ai_seed() {
                 bluer_ai_seed add_bluer_ai
             fi
 
-            if [ "$target" == "headless_rpi" ]; then
-                seed="${seed}touch ~/storage/temp/ignore/headless$delim_section"
-            fi
-
-            if [ "$target" == "rpi" ]; then
-                seed="${seed}python3 -m pip install --upgrade pip$delim"
-                seed="${seed}pip3 install -e .$delim"
-                seed="${seed}sudo python3 -m pip install --upgrade pip$delim"
-                seed="${seed}sudo pip3 install -e .$delim_section"
-            elif [ "$target" == "headless_rpi" ]; then
-                seed="${seed}sudo apt-get --yes --force-yes install python3-pip$delim"
-                seed="${seed}pip3 install -e .$delim"
-                seed="${seed}sudo pip3 install -e .$delim_section"
-            else
-                seed="${seed}pip3 install -e .$delim_section"
-            fi
+            seed="${seed}pip3 install -e .$delim_section"
 
             seed="${seed}source ./bluer_ai/.abcli/bluer_ai.sh$delim_section"
 
-            if [ "$target" == "ec2" ]; then
+            [[ "$target" == "ec2" ]] &&
                 seed="${seed}source ~/.bash_profile$delim_section"
-            elif [ "$target" == "rpi" ]; then
-                seed="${seed}source ~/.bashrc$delim_section"
-            fi
 
             if [[ "$target" == sagemaker_jupyterlab ]]; then
                 seed="${seed}pip3 install --upgrade opencv-python-headless$delim_section"
