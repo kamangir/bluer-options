@@ -70,6 +70,12 @@ parser.add_argument(
     help="0|1",
     default=0,
 )
+parser.add_argument(
+    "--sorted",
+    type=int,
+    help="0|1",
+    default=0,
+)
 args = parser.parse_args()
 
 delim = " " if args.delim == "space" else args.delim
@@ -115,7 +121,9 @@ elif args.task == "log":
             args.after,
             "{}{}{}.".format(
                 GREEN,
-                f"{NC}, {GREEN}".join(list_of_items),
+                f"{NC}, {GREEN}".join(
+                    sorted(list_of_items) if args.sorted == 1 else list_of_items
+                ),
                 NC,
             ),
         )
