@@ -98,7 +98,7 @@ function bluer_ai_seed() {
         local function_name="bluer_ai_seed_${target}"
 
         if [[ $(type -t $function_name) == "function" ]]; then
-            $function_name "${@:2}"
+            $function_name "$@"
         else
             bluer_ai_log_error "@seed: $target: target not found."
             return 1
