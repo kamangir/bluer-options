@@ -13,12 +13,18 @@ function bluer_ai_env_dot_seed() {
 
     pushd $path >/dev/null
     local line
+    local var_name
+    local var_value
     for line in $(dotenv \
-        --file .env \
+        --file sample.env \
         list \
         --format shell); do
 
-        seed="${seed}export $line$delim"
+        var_name=$(python -c "print('$line'.split('=',1)[0])")
+
+        var_value=${!var_name}
+
+        seed="${seed}export $var_name=$var_value$delim"
     done
     popd >/dev/null
 
