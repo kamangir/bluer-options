@@ -3,8 +3,6 @@
 function bluer_ai_seed() {
     local task=$1
 
-    local list_of_seed_targets="cloudshell|ec2|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
-
     # internal function.
     if [[ "$task" == "add_bluer_ai" ]]; then
         local options=$1
@@ -26,6 +24,13 @@ function bluer_ai_seed() {
         seed="${seed}git checkout $bluer_ai_git_branch$delim"
         seed="${seed}git pull$delim_section"
 
+        return
+    fi
+
+    # internal function
+    if [[ "$task" == "add_bluer_ai_env" ]]; then
+        seed="${seed}python3 -m venv \$HOME/venv/bluer_ai$delim"
+        seed="${seed}source \$HOME/venv/bluer_ai/bin/activate$delim_section"
         return
     fi
 
@@ -83,7 +88,7 @@ function bluer_ai_seed() {
 
     if [[ "$task" == "list" ]]; then
         local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
-        list_of_targets="$list_of_targets|$list_of_seed_targets"
+
         bluer_ai_log_list "$list_of_targets" \
             --before "" \
             --delim \| \
@@ -101,8 +106,6 @@ function bluer_ai_seed() {
     local do_eval=$(bluer_ai_option_int "$options" eval 0)
     local include_aws=$(bluer_ai_option_int "$options" aws 0)
     local output=$(bluer_ai_option_choice "$options" clipboard,key,screen clipboard)
-    [[ "$abcli_is_sagemaker" == true ]] &&
-        output=screen
 
     local delim="\n"
     local delim_section="\n\n"
@@ -111,14 +114,9 @@ function bluer_ai_seed() {
         delim_section="; "
     fi
 
-    local env_name=""
-    [[ "$target" == "ec2" ]] &&
-        env_name="worker"
-    env_name=$(bluer_ai_option "$options" env $env_name)
+    local env_name=$(bluer_ai_option "$options" env "")
 
     local sudo_prefix="sudo "
-    [[ "$target" == *"sagemaker"* ]] &&
-        sudo_prefix=""
 
     if [ "$output" == "key" ]; then
         local seed_path="/Volumes/seed"
@@ -148,77 +146,22 @@ function bluer_ai_seed() {
         seed="$seed$(bluer_ai_seed add_file $HOME/.aws/credentials \$HOME/.aws/credentials)$delim_section"
     fi
 
-    if [[ "|$list_of_seed_targets|" != *"|$target|"* ]]; then
-        # expected to append to/update $seed
-        local function_name="bluer_ai_seed_${target}"
-
-        if [[ $(type -t $function_name) == "function" ]]; then
-            $function_name "$@"
-        else
-            bluer_ai_log_error "@seed: $target: target not found."
-            return 1
-        fi
+    # expected to append to/update $seed
+    local function_name="bluer_ai_seed_${target}"
+    if [[ $(type -t $function_name) == "function" ]]; then
+        $function_name "$@"
     else
-        bluer_ai_seed add_kaggle
+        bluer_ai_log_error "@seed: $target: target not found."
+        return 1
+    fi
 
-        if [[ "|cloudshell|studio_classic_sagemaker|" != *"|$target|"* ]]; then
-            bluer_ai_seed add_ssh_key
-        fi
-
-        if [[ "$target" == "studio_classic_sagemaker_system" ]]; then
-            # https://chat.openai.com/c/8bdce889-a9fa-41c2-839f-f75c14d48e52
-            seed="${seed}conda install -y unzip$delim_section"
-
-            seed="${seed}pip3 install opencv-python-headless$delim_section"
-        fi
-
-        if [[ "$target" == "studio_classic_sagemaker" ]]; then
-            seed="${seed}apt-get update$delim"
-            seed="${seed}apt install -y libgl1-mesa-glx rsync$delim"
-            seed="${seed}conda install -c conda-forge nano --yes$delim_section"
-        fi
-
-        [[ "$target" == studio_classic_sagemaker_system ]] &&
-            seed="${seed}pip install --upgrade pip --no-input$delim_section"
-
-        if [[ "$target" == studio_classic_sagemaker ]]; then
-            bluer_ai_seed add_bluer_ai ~clone
-        elif [[ "$target" == studio_classic_sagemaker_system ]]; then
-            bluer_ai_seed add_bluer_ai https
-        else
-            bluer_ai_seed add_bluer_ai
-        fi
-
-        seed="${seed}pip3 install -e .$delim_section"
-
-        seed="${seed}source ./bluer_ai/.abcli/bluer_ai.sh$delim_section"
-
-        [[ "$target" == "ec2" ]] &&
-            seed="${seed}source ~/.bash_profile$delim_section"
-
-        if [[ "$target" == sagemaker_jupyterlab ]]; then
-            seed="${seed}pip3 install --upgrade opencv-python-headless$delim_section"
-            seed="${seed}bluer_ai_plugins_install all$delim_section"
-        fi
-
-        if [ ! -z "$env_name" ]; then
-            seed="${seed}bluer_ai_env dot copy $env_name$delim"
-            seed="${seed}bluer_ai init$delim_section"
-        fi
-
-        if [[ "$target" == studio_classic_sagemaker ]]; then
-            local plugin_name=$(bluer_ai_option "$options" plugin)
-
-            [[ ! -z "$plugin_name" ]] &&
-                seed="${seed}bluer_ai_conda create name=$plugin_name,~recreate$delim"
-        fi
+    if [ ! -z "$env_name" ]; then
+        seed="${seed}bluer_ai_env dot copy $env_name$delim"
+        seed="${seed}bluer_ai init$delim_section"
     fi
 
     [[ "$do_eval" == 1 ]] &&
         seed="${seed}bluer_ai_eval ${@:3}$delim_section"
-
-    [[ "$target" == studio_classic_sagemaker* ]] &&
-        bluer_ai_log_warning "run \"bash\" before pasting the seed."
 
     if [ "$output" == "clipboard" ]; then
         if [ "$abcli_is_mac" == true ]; then
