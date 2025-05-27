@@ -5,13 +5,27 @@ function bluer_ai_seed() {
 
     local list_of_seed_targets="cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
 
-    if [ "$task" == "list" ]; then
-        local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
-        list_of_targets="$list_of_targets|$list_of_seed_targets"
-        bluer_ai_log_list "$list_of_targets" \
-            --before "" \
-            --delim \| \
-            --after "target(s)"
+    # internal function.
+    if [ "$task" == "add_bluer_ai" ]; then
+        local options=$1
+        local do_clone=$(bluer_ai_option "$options" clone 1)
+        local use_ssh=$(bluer_ai_option_int "$options" ssh 1)
+
+        if [[ "$do_clone" == 0 ]]; then
+            seed="${seed}cd; cd git/bluer-ai${delim}"
+            return
+        fi
+
+        local repo_address="git@github.com:kamangir/bluer-ai.git"
+        [[ "$use_ssh" == 0 ]] &&
+            repo_address="https://github.com/kamangir/bluer-ai"
+
+        seed="${seed}cd; mkdir -p git; cd git$delim"
+        seed="${seed}git clone $repo_address$delim"
+        seed="${seed}cd bluer-ai$delim"
+        seed="${seed}git checkout $bluer_ai_git_branch$delim"
+        seed="${seed}git pull$delim_section"
+
         return
     fi
 
@@ -46,36 +60,22 @@ function bluer_ai_seed() {
         return
     fi
 
-    # internal function.
-    if [ "$task" == "add_bluer_ai" ]; then
-        local options=$1
-        local do_clone=$(bluer_ai_option "$options" clone 1)
-        local use_ssh=$(bluer_ai_option_int "$options" ssh 1)
-
-        if [[ "$do_clone" == 0 ]]; then
-            seed="${seed}cd; cd git/bluer-ai${delim}"
-            return
-        fi
-
-        local repo_address="git@github.com:kamangir/bluer-ai.git"
-        [[ "$use_ssh" == 0 ]] &&
-            repo_address="https://github.com/kamangir/bluer-ai"
-
-        seed="${seed}cd; mkdir -p git; cd git$delim"
-        seed="${seed}git clone $repo_address$delim"
-        seed="${seed}cd bluer-ai$delim"
-        seed="${seed}git checkout $bluer_ai_git_branch$delim"
-        seed="${seed}git pull$delim_section"
-
-        return
-    fi
-
     if [ "$task" == "eject" ]; then
         if [[ "$abcli_is_jetson" == true ]]; then
             sudo eject /media/bluer_ai/SEED
         else
             sudo diskutil umount /Volumes/seed
         fi
+        return
+    fi
+
+    if [ "$task" == "list" ]; then
+        local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
+        list_of_targets="$list_of_targets|$list_of_seed_targets"
+        bluer_ai_log_list "$list_of_targets" \
+            --before "" \
+            --delim \| \
+            --after "target(s)"
         return
     fi
 
