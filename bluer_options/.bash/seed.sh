@@ -15,12 +15,12 @@ function bluer_ai_seed() {
         return
     fi
 
-    local base64="base64"
-    # https://superuser.com/a/1225139
-    [[ "$abcli_is_ubuntu" == true ]] && base64="base64 -w 0"
-
     # internal function.
     if [ "$task" == "add_file" ]; then
+        local base64="base64"
+        # https://superuser.com/a/1225139
+        [[ "$abcli_is_ubuntu" == true ]] && base64="base64 -w 0"
+
         local source_filename=$2
 
         local destination_filename=$3
