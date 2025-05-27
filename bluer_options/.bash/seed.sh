@@ -6,7 +6,7 @@ function bluer_ai_seed() {
     local list_of_seed_targets="cloudshell|docker|ec2|jetson|headless_rpi|mac|rpi|sagemaker_jupyterlab|studio_classic_sagemaker|studio_classic_sagemaker_system"
 
     # internal function.
-    if [ "$task" == "add_bluer_ai" ]; then
+    if [[ "$task" == "add_bluer_ai" ]]; then
         local options=$1
         local do_clone=$(bluer_ai_option "$options" clone 1)
         local use_ssh=$(bluer_ai_option_int "$options" ssh 1)
@@ -30,7 +30,7 @@ function bluer_ai_seed() {
     fi
 
     # internal function.
-    if [ "$task" == "add_file" ]; then
+    if [[ "$task" == "add_file" ]]; then
         local base64="base64"
         # https://superuser.com/a/1225139
         [[ "$abcli_is_ubuntu" == true ]] && base64="base64 -w 0"
@@ -50,7 +50,19 @@ function bluer_ai_seed() {
     fi
 
     # internal function.
-    if [ "$task" == "add_ssh_key" ]; then
+    if [[ "$task" == "add_kaggle" ]]; then
+        if [[ -f "$HOME/.kaggle/kaggle.json" ]]; then
+            seed="${seed}mkdir -p \$HOME/.kaggle$delim"
+            seed="$seed$(bluer_ai_seed add_file $HOME/.kaggle/kaggle.json \$HOME/.kaggle/kaggle.json)$delim"
+            seed="${seed}chmod 600 \$HOME/.kaggle/kaggle.json$delim_section"
+        else
+            bluer_ai_log_warning "@seed: kaggle.json not found."
+        fi
+        return
+    fi
+
+    # internal function.
+    if [[ "$task" == "add_ssh_key" ]]; then
         seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
         seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
         seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME)$delim"
@@ -60,7 +72,7 @@ function bluer_ai_seed() {
         return
     fi
 
-    if [ "$task" == "eject" ]; then
+    if [[ "$task" == "eject" ]]; then
         if [[ "$abcli_is_jetson" == true ]]; then
             sudo eject /media/bluer_ai/SEED
         else
@@ -69,7 +81,7 @@ function bluer_ai_seed() {
         return
     fi
 
-    if [ "$task" == "list" ]; then
+    if [[ "$task" == "list" ]]; then
         local list_of_targets=$(declare -F | awk '{print $NF}' | grep 'bluer_ai_seed_' | sed 's/bluer_ai_seed_//' | tr '\n' '|')
         list_of_targets="$list_of_targets|$list_of_seed_targets"
         bluer_ai_log_list "$list_of_targets" \
@@ -128,14 +140,6 @@ function bluer_ai_seed() {
 
     seed="${seed}echo \"$abcli_fullname seed for $target\"$delim_section"
 
-    if [ -d "$HOME/.kaggle" ]; then
-        seed="${seed}mkdir -p \$HOME/.kaggle$delim"
-        seed="$seed$(bluer_ai_seed add_file $HOME/.kaggle/kaggle.json \$HOME/.kaggle/kaggle.json)$delim"
-        seed="${seed}chmod 600 \$HOME/.kaggle/kaggle.json$delim_section"
-    else
-        bluer_ai_log_warning "@seed: kaggle.json not found."
-    fi
-
     if [[ "$include_aws" == 1 ]]; then
         seed="$seed${sudo_prefix}rm -rf ~/.aws$delim"
         seed="$seed${sudo_prefix}mkdir ~/.aws$delim_section"
@@ -157,6 +161,8 @@ function bluer_ai_seed() {
         if [ "$target" == docker ]; then
             seed="${seed}source /root/git/bluer-ai/bluer_ai/.abcli/bluer_ai.sh$delim"
         else
+            bluer_ai_seed add_kaggle
+
             if [[ "|cloudshell|studio_classic_sagemaker|" != *"|$target|"* ]]; then
                 bluer_ai_seed add_ssh_key
             fi
