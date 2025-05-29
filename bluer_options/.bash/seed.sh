@@ -44,7 +44,7 @@ function bluer_ai_seed() {
 
     # internal function.
     if [[ "$task" == "add_repo" ]]; then
-        local options=$1
+        local options=$2
         local do_clone=$(bluer_ai_option "$options" clone 1)
         local use_ssh=$(bluer_ai_option_int "$options" ssh 1)
         local repo_name=$(bluer_ai_option "$options" repo bluer-ai)
