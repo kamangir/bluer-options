@@ -58,10 +58,12 @@ function bluer_ai_seed() {
         [[ "$use_ssh" == 0 ]] &&
             repo_address="https://github.com/kamangir/$repo_name"
 
+        local repo_branch=$(bluer_ai_git $repo_name get_branch)
+
         seed="${seed}cd; mkdir -p git; cd git$delim"
         seed="${seed}git clone $repo_address$delim"
         seed="${seed}cd $repo_name$delim"
-        seed="${seed}git checkout $bluer_ai_git_branch$delim"
+        seed="${seed}git checkout $repo_branch$delim"
         seed="${seed}git pull$delim_section"
 
         return
