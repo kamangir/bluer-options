@@ -75,7 +75,8 @@ function bluer_ai_seed() {
         seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
         seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME)$delim"
         seed="${seed}chmod 600 ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim"
-        seed="${seed}ssh-add -k ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim_section"
+        seed="${seed}ssh-add -k ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim"
+        seed="${seed}ssh-keyscan github.com >> ~/.ssh/known_hosts$delim"
         seed="${seed}"'ssh -T git@github.com'"$delim_section"
         return
     fi
