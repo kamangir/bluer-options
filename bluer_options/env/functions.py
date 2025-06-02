@@ -34,6 +34,9 @@ def load_config(
     package_name: str,
     verbose: bool = False,
 ):
+    if "." in package_name:
+        package_name = package_name.split(".")[0]
+
     resource = files(package_name).joinpath("config.env")
     with as_file(resource) as env_filename:
         if verbose:
@@ -46,6 +49,9 @@ def load_env(
     package_name: str,
     verbose: bool = False,
 ):
+    if "." in package_name:
+        package_name = package_name.split(".")[0]
+
     with as_file(files(package_name)) as package_path:
         env_filename = os.path.join(
             os.path.dirname(package_path),
