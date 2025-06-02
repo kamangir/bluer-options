@@ -42,7 +42,9 @@ def load_config(
         if verbose:
             print(f"loading {env_filename}.")
 
-        assert load_dotenv(env_filename), env_filename
+        assert load_dotenv(
+            env_filename
+        ), f"package_name: {package_name}, env_filename: {env_filename}"
 
 
 def load_env(
