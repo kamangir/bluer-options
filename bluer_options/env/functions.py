@@ -1,7 +1,13 @@
 from typing import Any
 import os
 from dotenv import load_dotenv
-import pkg_resources
+
+# https://chatgpt.com/c/683d39ac-34a8-8005-b780-71a6d2253ea9
+try:
+    from importlib.resources import files, as_file
+except ImportError:
+    # for Python < 3.9
+    from importlib_resources import files, as_file
 
 
 def get_env(name: str, default: Any = "") -> Any:
@@ -28,32 +34,25 @@ def load_config(
     package_name: str,
     verbose: bool = False,
 ):
-    env_filename = pkg_resources.resource_filename(
-        package_name,
-        "config.env",
-    )
+    resource = files(package_name).joinpath("config.env")
+    with as_file(resource) as env_filename:
+        if verbose:
+            print(f"loading {env_filename}.")
 
-    if verbose:
-        print(f"loading {env_filename}.")
-
-    assert load_dotenv(env_filename), pkg_resources.resource_listdir(package_name, "")
+        assert load_dotenv(env_filename), env_filename
 
 
 def load_env(
     package_name: str,
     verbose: bool = False,
 ):
-    env_filename = os.path.join(
-        os.path.dirname(
-            pkg_resources.resource_filename(
-                package_name,
-                "",
-            )
-        ),
-        ".env",
-    )
+    with as_file(files(package_name)) as package_path:
+        env_filename = os.path.join(
+            os.path.dirname(package_path),
+            ".env",
+        )
 
-    if verbose:
-        print(f"loading {env_filename}.")
+        if verbose:
+            print(f"loading {env_filename}.")
 
-    load_dotenv(env_filename)
+        load_dotenv(env_filename)
