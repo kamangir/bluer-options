@@ -109,6 +109,10 @@ def is_rpi() -> bool:
     return os.getenv("abcli_is_rpi", "false") == "true"
 
 
+def is_ssh_session() -> bool:
+    return os.getenv("abcli_is_ssh_session", "false") == "true"
+
+
 def is_ubuntu() -> bool:
     return os.getenv("abcli_is_ubuntu", "false") == "true"
 
