@@ -11,6 +11,7 @@ from bluer_options.host.functions import (
     is_jupyter,
     is_mac,
     is_rpi,
+    is_ssh_session,
     is_ubuntu,
     signature,
     tensor_processing_signature,

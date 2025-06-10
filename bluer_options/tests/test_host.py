@@ -11,6 +11,7 @@ from bluer_options.host.functions import (
     is_jupyter,
     is_mac,
     is_rpi,
+    is_ssh_session,
     is_ubuntu,
     signature,
 )
@@ -32,6 +33,7 @@ def test_signature():
         [is_jupyter, False],
         [is_mac, None],
         [is_rpi, False],
+        [is_ssh_session, None],
         [is_ubuntu, None],
     ],
 )
