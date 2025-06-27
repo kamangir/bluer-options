@@ -28,10 +28,18 @@ from bluer_options import string
         [5],
     ],
 )
+@pytest.mark.parametrize(
+    ["itemize"],
+    [
+        [False],
+        [True],
+    ],
+)
 def test_log_list(
     list_of_items: str,
     max_length: int,
     max_count: int,
+    itemize: bool,
 ):
     log_list(
         logger=logger,
@@ -39,4 +47,5 @@ def test_log_list(
         list_of_items=list_of_items,
         max_count=max_count,
         max_length=max_length,
+        itemize=itemize,
     )
