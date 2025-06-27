@@ -94,8 +94,22 @@ def log_list(
     item_name_plural: str = "item(s)",
     max_count: int = 5,
     max_length: int = 100,
+    itemize: bool = True,
 ):
     logger.info(f"{title} {len(list_of_items)} {item_name_plural}")
+
+    if not itemize:
+        logger.info(
+            "{} {}: {}".format(
+                len(list_of_items),
+                item_name_plural,
+                ", ".join(
+                    list_of_items[:max_count]
+                    + (["..."] if len(list_of_items) > max_count else [])
+                ),
+            )
+        )
+        return
 
     for index, item in enumerate(list_of_items):
         logger.info(
@@ -106,6 +120,6 @@ def log_list(
             )
         )
 
-        if index > max_count:
+        if index >= max_count - 1:
             logger.info("...")
             break
