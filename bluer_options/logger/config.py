@@ -96,11 +96,10 @@ def log_list(
     max_length: int = 100,
     itemize: bool = True,
 ):
-    logger.info(f"{title} {len(list_of_items)} {item_name_plural}")
-
     if not itemize:
         logger.info(
-            "{} {}: {}".format(
+            "{} {} {}: {}".format(
+                title,
                 len(list_of_items),
                 item_name_plural,
                 ", ".join(
@@ -110,6 +109,8 @@ def log_list(
             )
         )
         return
+
+    logger.info(f"{title} {len(list_of_items)} {item_name_plural}")
 
     for index, item in enumerate(list_of_items):
         logger.info(
