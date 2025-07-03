@@ -71,7 +71,7 @@ function bluer_ai_seed() {
 
     # internal function.
     if [[ "$task" == "add_ssh_key" ]]; then
-        local options=$1
+        local options=$2
         local sudo_mode=$(bluer_ai_option_int "$options" sudo 0)
 
         seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
