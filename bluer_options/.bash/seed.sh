@@ -71,12 +71,21 @@ function bluer_ai_seed() {
 
     # internal function.
     if [[ "$task" == "add_ssh_key" ]]; then
+        local options=$1
+        local sudo_mode=$(bluer_ai_option_int "$options" sudo 0)
+
         seed="${seed}${sudo_prefix}mkdir -p ~/.ssh$delim_section"
         seed="$seed"'eval "$(ssh-agent -s)"'"$delim_section"
         seed="$seed$(bluer_ai_seed add_file $HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME \$HOME/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME)$delim"
         seed="${seed}chmod 600 ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim"
         seed="${seed}ssh-add -k ~/.ssh/$BLUER_AI_GIT_SSH_KEY_NAME$delim"
-        seed="${seed}ssh-keyscan github.com >> ~/.ssh/known_hosts$delim"
+
+        if [[ "$sudo_mode" == 1 ]]; then
+            seed="${seed}ssh-keyscan github.com | sudo tee -a ~/.ssh/known_hosts$delim"
+        else
+            seed="${seed}ssh-keyscan github.com >> ~/.ssh/known_hosts$delim"
+        fi
+
         seed="${seed}"'ssh -T git@github.com'"$delim_section"
         return
     fi
