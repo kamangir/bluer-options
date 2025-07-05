@@ -64,6 +64,7 @@ function bluer_ai_seed() {
         seed="${seed}git clone $repo_address$delim"
         seed="${seed}cd $repo_name$delim"
         seed="${seed}git checkout $repo_branch$delim"
+        seed="${seed}git config pull.rebase false$delim"
         seed="${seed}git pull$delim_section"
 
         return
