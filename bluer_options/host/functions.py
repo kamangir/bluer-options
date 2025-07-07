@@ -66,6 +66,10 @@ def get_seed_filename() -> str:
     )
 
 
+def is_64bit() -> bool:
+    return os.getenv("abcli_is_64bit", "false") == "true"
+
+
 def is_aws_batch() -> bool:
     return os.getenv("abcli_is_aws_batch", "false") == "true"
 
