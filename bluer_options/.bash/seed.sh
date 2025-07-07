@@ -9,6 +9,11 @@ function bluer_ai_seed() {
         seed="${seed}source \$HOME/venv/bluer_ai/bin/activate$delim_section"
         return
     fi
+    if [[ "$task" == "add_bluer_ai_env_ssp" ]]; then
+        seed="${seed}python3 -m venv \$HOME/venv/bluer_ai --system-site-packages$delim"
+        seed="${seed}source \$HOME/venv/bluer_ai/bin/activate$delim_section"
+        return
+    fi
 
     # internal function.
     if [[ "$task" == "add_file" ]]; then
