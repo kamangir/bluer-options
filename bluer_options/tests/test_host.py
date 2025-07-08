@@ -2,6 +2,7 @@ import pytest
 from typing import Callable, Union
 
 from bluer_options.host.functions import (
+    is_64bit,
     is_aws_batch,
     is_docker,
     is_ec2,
@@ -24,6 +25,7 @@ def test_signature():
 @pytest.mark.parametrize(
     ["func", "expected_value"],
     [
+        [is_64bit, None],
         [is_aws_batch, None],
         [is_docker, None],
         [is_ec2, None],

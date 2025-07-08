@@ -2,6 +2,7 @@ from bluer_options.host.functions import (
     get_name_,
     get_name,
     get_seed_filename,
+    is_64bit,
     is_aws_batch,
     is_docker,
     is_ec2,
