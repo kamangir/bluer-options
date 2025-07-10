@@ -6,7 +6,7 @@ function bluer_ai_env_dot_edit() {
     local machine_name=$2
 
     if [ "$machine_kind" == "local" ]; then
-        nano $abcli_path_abcli/.env
+        bluer_ai_code $abcli_path_abcli/.env
     else
         local filename="$abcli_object_temp/scp-${machine_kind}-${machine_name}.env"
 
@@ -18,7 +18,7 @@ function bluer_ai_env_dot_edit() {
             - \
             $filename
 
-        nano $filename
+        bluer_ai_code $filename
 
         abcli_scp \
             local \
