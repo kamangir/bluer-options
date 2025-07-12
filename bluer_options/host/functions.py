@@ -36,6 +36,9 @@ def get_name_() -> str:
     if is_jupyter():
         return "Jupyter-Notebook"
 
+    if is_github_workflow():
+        return "github-workflow"
+
     try:
         if is_rpi():
             # https://www.raspberrypi-spy.co.uk/2012/09/getting-your-raspberry-pi-serial-number-using-python/
