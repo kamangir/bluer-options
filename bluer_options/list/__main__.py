@@ -7,7 +7,9 @@ from bluer_options.logger.config import logger
 
 NAME = module.name(__file__, NAME)
 
-LIST_OF_TASKS = "filter|in|intersect|item|len|log|next|nonempty|prev|resize|sort"
+LIST_OF_TASKS = (
+    "filter|in|intersect|item|len|log|next|nonempty|prev|resize|reverse|sort"
+)
 
 parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
@@ -146,6 +148,8 @@ elif args.task == "prev":
     print(prev_item)
 elif args.task == "resize":
     print(delim.join(list_of_items[: args.count] if args.count >= 0 else list_of_items))
+elif args.task == "reverse":
+    print(delim.join(list_of_items[::-1]))
 elif args.task == "sort":
     if args.unique:
         list_of_items = list(set(list_of_items))

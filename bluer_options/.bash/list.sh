@@ -85,6 +85,13 @@ function bluer_ai_list_resize() {
         "${@:3}"
 }
 
+function bluer_ai_list_reverse() {
+    python3 -m bluer_options.list \
+        reverse \
+        --items "$1" \
+        "${@:2}"
+}
+
 function bluer_ai_list_sort() {
     python3 -m bluer_options.list \
         sort \
