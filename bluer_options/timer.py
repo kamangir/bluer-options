@@ -20,7 +20,7 @@ class Timer:
 
         if log:
             logger.info(
-                "{}: {}=1/{}, train=1/{}".format(
+                "{}: {} every {}.".format(
                     self.__class__.__name__,
                     name,
                     string.pretty_duration(
