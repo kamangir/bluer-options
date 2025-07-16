@@ -1,5 +1,7 @@
 import time
+
 from bluer_options import string
+from bluer_options.logger import logger
 
 
 class Timer:
@@ -7,6 +9,7 @@ class Timer:
         self,
         period: int,
         name: str,
+        log: bool = False,
     ):
         self.count = 0
         self.hot = False
@@ -14,6 +17,18 @@ class Timer:
         self.period = period
         self.name = name
         self.start_time = time.time()
+
+        if log:
+            logger.info(
+                "{}: {}=1/{}, train=1/{}".format(
+                    self.__class__.__name__,
+                    name,
+                    string.pretty_duration(
+                        period,
+                        include_ms=True,
+                    ),
+                )
+            )
 
     def reset(self):
         self.hot = False
