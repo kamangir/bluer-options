@@ -1,6 +1,6 @@
 import pytest
 
-from bluer_options.logger import logger, log_list
+from bluer_options.logger import logger, log_list, log_list_as_str
 from bluer_options import string
 
 
@@ -41,6 +41,13 @@ def test_log_list(
     max_count: int,
     itemize: bool,
 ):
+    output = log_list_as_str(
+        title="testing",
+        list_of_items=list_of_items,
+        max_count=max_count,
+    )
+    assert isinstance(output, str)
+
     log_list(
         logger=logger,
         title="testing",

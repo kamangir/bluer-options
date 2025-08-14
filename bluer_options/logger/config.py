@@ -87,6 +87,23 @@ def log_dict(
             break
 
 
+def log_list_as_str(
+    title: str,
+    list_of_items: list,
+    item_name_plural: str = "item(s)",
+    max_count: int = 5,
+) -> str:
+    return "{} {} {}: {}".format(
+        title,
+        len(list_of_items),
+        item_name_plural,
+        ", ".join(
+            list_of_items[:max_count]
+            + (["..."] if len(list_of_items) > max_count else [])
+        ),
+    )
+
+
 def log_list(
     logger: Logger,
     title: str,
@@ -98,14 +115,11 @@ def log_list(
 ):
     if not itemize:
         logger.info(
-            "{} {} {}: {}".format(
-                title,
-                len(list_of_items),
-                item_name_plural,
-                ", ".join(
-                    list_of_items[:max_count]
-                    + (["..."] if len(list_of_items) > max_count else [])
-                ),
+            log_list_as_str(
+                title=title,
+                list_of_items=list_of_items,
+                item_name_plural=item_name_plural,
+                max_count=max_count,
             )
         )
         return
