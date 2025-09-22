@@ -19,6 +19,10 @@ function bluer_ai_open() {
     [[ ! -z "$filename" ]] &&
         what=$what/$filename
 
-    bluer_ai_log "📜 $what"
-    open "$what"
+    if [[ "$abcli_is_github_workflow" == true ]]; then
+        bluer_ai_log_warning "@open: $what: skipped."
+    else
+        bluer_ai_log "📜 $what"
+        open "$what"
+    fi
 }
