@@ -99,20 +99,19 @@ class Timing:
             return inner
 
         # Case 2: @timing.time() or @timing.time("custom")
-        else:
-            keyword = arg  # may be None or str
+        keyword = arg  # may be None or str
 
-            def decorator(func):
-                name = keyword or func.__name__
+        def decorator(func):
+            name = keyword or func.__name__
 
-                @wraps(func)
-                def inner(*args, **kwargs):
-                    self.start(name)
-                    try:
-                        return func(*args, **kwargs)
-                    finally:
-                        self.stop(name)
+            @wraps(func)
+            def inner(*args, **kwargs):
+                self.start(name)
+                try:
+                    return func(*args, **kwargs)
+                finally:
+                    self.stop(name)
 
-                return inner
+            return inner
 
-            return decorator
+        return decorator
