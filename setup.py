@@ -19,6 +19,7 @@ setup(
         f"{NAME}.options",
         f"{NAME}.string",
         f"{NAME}.terminal",
+        f"{NAME}.timing",
     ],
     include_package_data=True,
     package_data={

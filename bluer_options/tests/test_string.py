@@ -364,7 +364,7 @@ def test_string_pretty_duration_options(
     ],
 )
 def test_string_pretty_duration(
-    duration: int,
+    duration: float,
     expected_output: str,
 ):
     assert (

@@ -221,7 +221,7 @@ def pretty_shape_of_matrix(
 
 
 def pretty_duration(
-    duration: Union[None, int],
+    duration: Union[None, float],
     element_format: str = "{}{}",
     include_ms: bool = False,
     largest: bool = False,
