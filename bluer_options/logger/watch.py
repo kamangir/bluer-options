@@ -15,3 +15,5 @@ def watch(seconds: int = 1) -> bool:
                 print(line, end="")
     except KeyboardInterrupt:
         print("\n^C received.")
+
+    return True
