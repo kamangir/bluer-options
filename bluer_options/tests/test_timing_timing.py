@@ -2,7 +2,7 @@ from bluer_options.timing import timing
 from time import sleep
 
 
-def test_timing_elapsed_timer():
+def test_timing_timing():
     @timing.time
     def func1():
         sleep(0.01)
@@ -12,6 +12,7 @@ def test_timing_elapsed_timer():
     timing.log()
 
     assert len(timing.stats) == 1
+    assert isinstance(timing.as_dict, dict)
 
     # ---
 

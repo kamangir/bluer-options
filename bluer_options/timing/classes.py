@@ -1,5 +1,5 @@
 import time
-from typing import List
+from typing import List, Dict
 from collections import defaultdict
 from functools import wraps
 
@@ -7,6 +7,12 @@ from bluer_options import string
 from bluer_options.logger import logger
 from bluer_options.logger.config import log_list
 from bluer_options.timing.elapsed_timer import ElapsedTimer
+
+
+def recursive_to_dict(d):
+    if isinstance(d, (defaultdict, dict)):
+        d = {k: recursive_to_dict(v) for k, v in d.items()}
+    return d
 
 
 class Timing:
@@ -29,6 +35,10 @@ class Timing:
         self.stats[keyword]["total"] += elapsed
 
         return elapsed
+
+    @property
+    def as_dict(self) -> Dict:
+        return recursive_to_dict(self.stats)
 
     def as_list(self, **kwgrs) -> List[str]:
         lines = []
