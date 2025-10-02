@@ -63,7 +63,7 @@ class Timing:
         return lines
 
     def calculate(self):
-        for v in self.stats.items():
+        for v in self.stats.values():
             v["average"] = v["total"] / v["count"]
 
     def log(
