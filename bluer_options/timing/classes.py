@@ -75,7 +75,7 @@ class Timing:
     ):
         log_list(
             logger,
-            "took {} for".format(
+            "in {} called".format(
                 self.elapsed_timer.as_str(
                     stop=False,
                     include_ms=include_ms,
@@ -88,7 +88,7 @@ class Timing:
                 largest=largest,
                 short=short,
             ),
-            "function call(s):",
+            "function(s):",
             max_count=-1,
             **kwargs,
         )
