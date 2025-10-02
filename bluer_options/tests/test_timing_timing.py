@@ -11,6 +11,8 @@ def test_timing_timing():
 
     timing.log()
 
+    timing.calculate()
+
     assert len(timing.stats) == 1
     assert isinstance(timing.as_dict, dict)
 

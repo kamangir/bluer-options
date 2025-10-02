@@ -23,6 +23,7 @@ from bluer_options import string
 @pytest.mark.parametrize(
     ["max_count"],
     [
+        [-1],
         [1],
         [2],
         [5],
