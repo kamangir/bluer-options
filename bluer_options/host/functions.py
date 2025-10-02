@@ -2,6 +2,8 @@ from typing import List
 import os
 
 from blueness import module
+from blueness import NAME as blueness_NAME
+from blueness import VERSION as blueness_VERSION
 from bluer_options import NAME, env, fullname, string
 from bluer_options.logger import crash_report
 
@@ -128,7 +130,10 @@ def signature() -> List[str]:
     import platform
 
     return (
-        [fullname()]
+        [
+            fullname(),
+            f"{blueness_NAME}-{blueness_VERSION}",
+        ]
         + tensor_processing_signature()
         + [
             "Python {}".format(platform.python_version()),

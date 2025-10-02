@@ -98,8 +98,12 @@ def log_list_as_str(
         len(list_of_items),
         item_name_plural,
         ", ".join(
-            list_of_items[:max_count]
-            + (["..."] if len(list_of_items) > max_count else [])
+            list_of_items
+            if max_count == -1
+            else (
+                list_of_items[:max_count]
+                + (["..."] if len(list_of_items) > max_count else [])
+            )
         ),
     )
 
@@ -130,11 +134,11 @@ def log_list(
         logger.info(
             "#{: 4} - {}{}".format(
                 index,
-                item[:max_length],
-                "..." if len(item) > max_length else "",
+                item if max_length == -1 else item[:max_length],
+                "" if max_length == -1 else "..." if len(item) > max_length else "",
             )
         )
 
-        if index >= max_count - 1:
+        if max_count != -1 and index >= max_count - 1:
             logger.info("...")
             break

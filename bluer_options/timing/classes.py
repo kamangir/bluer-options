@@ -38,9 +38,13 @@ class Timing:
 
     @property
     def as_dict(self) -> Dict:
+        self.calculate()
+
         return recursive_to_dict(self.stats)
 
     def as_list(self, **kwgrs) -> List[str]:
+        self.calculate()
+
         lines = []
         # sort items by total time (descending)
         for k, v in sorted(
@@ -48,16 +52,19 @@ class Timing:
             key=lambda item: item[1]["total"],
             reverse=True,
         ):
-            avg = v["total"] / v["count"]
             lines.append(
                 "{}: called {:,} time(s), total {}, avg {}".format(
                     k,
                     v["count"],
                     string.pretty_duration(v["total"], **kwgrs),
-                    string.pretty_duration(avg, **kwgrs),
+                    string.pretty_duration(v["average"], **kwgrs),
                 )
             )
         return lines
+
+    def calculate(self):
+        for v in self.stats.values():
+            v["average"] = v["total"] / v["count"]
 
     def log(
         self,
@@ -82,6 +89,7 @@ class Timing:
                 short=short,
             ),
             "function call(s):",
+            max_count=-1,
             **kwargs,
         )
 
