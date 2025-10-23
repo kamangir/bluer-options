@@ -1,13 +1,14 @@
 import argparse
+import random
 
 from blueness import module
 
 from bluer_options import NAME
-from bluer_options.string import after, before, pretty_date, random
+from bluer_options import string
 
 NAME = module.name(__file__, NAME)
 
-list_of_tasks = "after|before|pretty_date|random"
+list_of_tasks = "after | before | pretty_date | random"
 
 
 parser = argparse.ArgumentParser(NAME)
@@ -41,23 +42,48 @@ parser.add_argument(
     help="0|1",
     default=0,
 )
+parser.add_argument(
+    "--float",
+    type=int,
+    help="0|1",
+    default=0,
+)
+parser.add_argument(
+    "--min",
+    type=float,
+    default=0.0,
+)
+parser.add_argument(
+    "--max",
+    type=float,
+    default=100.0,
+)
 args = parser.parse_args()
 
-success = args.task in list_of_tasks.split("|")
+success = args.task in list_of_tasks.split(" | ")
 if args.task == "after":
-    print(after(args.string, args.substring))
+    print(string.after(args.string, args.substring))
 elif args.task == "before":
-    print(before(args.string, args.substring))
+    print(string.before(args.string, args.substring))
 elif args.task == "pretty_date":
     print(
-        pretty_date(
+        string.pretty_date(
             as_filename=True,
-            include_time=args.include_time,
-            unique=args.unique,
+            include_time=args.include_time == 1,
+            unique=args.unique == 1,
         )
     )
 elif args.task == "random":
-    print(random(args.length))
+    print(
+        "{:8}".format(
+            random.uniform(
+                args.min,
+                args.max,
+            )
+        )
+        if args.float == 1
+        else string.random(args.length)
+    )
 else:
     print(f"-{NAME}: {args.task}: command not found")
 
