@@ -271,6 +271,7 @@ def test_string_pretty_bytes(
 @pytest.mark.parametrize(["short"], [[True], [False]])
 @pytest.mark.parametrize(["squeeze"], [[True], [False]])
 @pytest.mark.parametrize(["unique"], [[True], [False]])
+@pytest.mark.parametrize(["unique_length"], [[6], [12]])
 def test_string_pretty_date(
     date: Any,
     as_filename: bool,
@@ -284,6 +285,7 @@ def test_string_pretty_date(
     short: bool,
     squeeze: bool,
     unique: bool,
+    unique_length: int,
 ):
     assert isinstance(
         pretty_date(
@@ -299,6 +301,7 @@ def test_string_pretty_date(
             short=short,
             squeeze=squeeze,
             unique=unique,
+            unique_length=unique_length,
         ),
         str,
     )
@@ -521,6 +524,7 @@ def test_pretty_shape_of_matrix(
     ["func"],
     [
         [timestamp],
+        [lambda: timestamp(unique_length=12)],
         [utc_timestamp],
     ],
 )
