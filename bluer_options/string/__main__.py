@@ -49,6 +49,12 @@ parser.add_argument(
     default=0,
 )
 parser.add_argument(
+    "--int",
+    type=int,
+    help="0|1",
+    default=0,
+)
+parser.add_argument(
     "--min",
     type=float,
     default=0.0,
@@ -75,13 +81,13 @@ elif args.task == "pretty_date":
     )
 elif args.task == "random":
     print(
-        "{:8}".format(
+        ("{:0.8f}" if args.float == 1 else "{:0.0f}").format(
             random.uniform(
                 args.min,
                 args.max,
             )
         )
-        if args.float == 1
+        if args.float == 1 or args.int == 1
         else string.random(args.length)
     )
 else:
