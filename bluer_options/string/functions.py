@@ -99,6 +99,7 @@ def pretty_date(
     short: bool = False,
     squeeze: bool = False,
     unique: bool = False,
+    unique_length: int = 6,
 ) -> str:
     format = ""
     if include_date:
@@ -117,7 +118,7 @@ def pretty_date(
         if include_seconds:
             format += ":%S"
     if unique:
-        format += f":{random(length=6)}"
+        format += f":{random(length=unique_length)}"
     if as_filename:
         format = (
             format.replace(" ", "-")
@@ -304,11 +305,12 @@ def random(
     return "".join(random_module.choice(alphabet) for _ in range(length))
 
 
-def timestamp() -> str:
+def timestamp(unique_length: int = 6) -> str:
     return pretty_date(
         as_filename=True,
         include_time=True,
         unique=True,
+        unique_length=unique_length,
     )
 
 
