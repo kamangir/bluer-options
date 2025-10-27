@@ -1,5 +1,6 @@
 import argparse
 import random
+import os
 
 from blueness import module
 
@@ -80,6 +81,8 @@ elif args.task == "pretty_date":
         )
     )
 elif args.task == "random":
+    random.seed(os.getpid())
+
     print(
         ("{:0.8f}" if args.float == 1 else "{:0.0f}").format(
             random.uniform(
