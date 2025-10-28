@@ -64,7 +64,7 @@ def log_long_text(
     max_length: int = 100,
 ):
     logger.info(
-        "{:,} char(s): {}{}".format(
+        "{:,} char(s): {}".format(
             len(text),
             shorten_text(
                 text=text,
