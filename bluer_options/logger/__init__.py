@@ -6,4 +6,5 @@ from bluer_options.logger.config import (
     log_list,
     log_list_as_str,
     log_long_text,
+    shorten_text,
 )
