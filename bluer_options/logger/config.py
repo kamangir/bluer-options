@@ -48,16 +48,31 @@ def crash_report(description):
     logger.error(f"crash: {description}", exc_info=1)
 
 
+def shorten_text(
+    text: str,
+    max_length: int = 100,
+) -> str:
+    return (
+        "{}...".format(
+            text[: max_length - 3],
+        )
+        if len(text) > max_length
+        else text
+    )
+
+
 def log_long_text(
     logger: Logger,
     text: str,
     max_length: int = 100,
 ):
     logger.info(
-        "{:,} char(s): {}{}".format(
+        "{:,} char(s): {}".format(
             len(text),
-            text[:max_length],
-            "..." if len(text) > max_length else "",
+            shorten_text(
+                text=text,
+                max_length=max_length,
+            ),
         )
     )
 

@@ -1,6 +1,6 @@
 import pytest
 
-from bluer_options.logger import logger, log_long_text
+from bluer_options.logger import logger, log_long_text, shorten_text
 from bluer_options import string
 
 
@@ -24,6 +24,9 @@ def test_log_long_text(
     text: str,
     max_length: int,
 ):
+    text = shorten_text(text, max_length=max_length)
+    assert isinstance(text, str)
+
     log_long_text(
         logger=logger,
         text=text,
