@@ -29,7 +29,7 @@ function bluer_ai_eval() {
         (
             source \
                 $abcli_path_bash/bluer_ai.sh \
-                $options \
+                ~terraform,$options \
                 "$command_line"
         ) &
     else
