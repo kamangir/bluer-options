@@ -298,6 +298,14 @@ def pretty_duration(
     return ("-" if negative_duration else "") + output
 
 
+def pretty_minimal_duration(duration: float) -> str:
+    return pretty_duration(
+        duration,
+        short=True,
+        largest=True,
+    )
+
+
 def random(
     length: int = 16,
     alphabet: str = string_module.ascii_lowercase + string_module.digits,

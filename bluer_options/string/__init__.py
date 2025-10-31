@@ -15,6 +15,7 @@ from bluer_options.string.functions import (
     pretty_bytes,
     pretty_date,
     pretty_duration,
+    pretty_minimal_duration,
     pretty_frequency,
     pretty_param,
     pretty_range_of_matrix,
