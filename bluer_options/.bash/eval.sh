@@ -26,10 +26,12 @@ function bluer_ai_eval() {
     [[ "$path" != "./" ]] && pushd $path >/dev/null
 
     if [[ "$in_background" == 1 ]]; then
-        source \
-            $abcli_path_bash/bluer_ai.sh \
-            $options \
-            "$command_line" &
+        (
+            source \
+                $abcli_path_bash/bluer_ai.sh \
+                $options \
+                "$command_line"
+        ) &
     else
         eval "$command_line"
         local status="$?"
