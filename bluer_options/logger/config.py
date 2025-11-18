@@ -92,12 +92,12 @@ def log_dict(
             "#{: 4} - {}: {}{}".format(
                 index,
                 item,
-                info[:max_length],
+                info if max_length == -1 else info[:max_length],
                 "..." if len(info) > max_length else "",
             )
         )
 
-        if index > max_count:
+        if max_count != -1 and index > max_count:
             logger.info("...")
             break
 
