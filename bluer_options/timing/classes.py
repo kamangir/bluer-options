@@ -64,7 +64,7 @@ class Timing:
 
     def calculate(self):
         for v in self.stats.values():
-            v["average"] = v["total"] / v["count"]
+            v["average"] = v["total"] / v["count"] if v["count"] > 0 else 0
 
     def log(
         self,
