@@ -3,6 +3,7 @@ from typing import List
 
 list_of_modules: List[str] = [
     "abcli",
+    "bluer_agent",
     "bluer_ai",
     "bluer_algo",
     "bluer_flow",
