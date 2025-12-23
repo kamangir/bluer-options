@@ -3,7 +3,12 @@ from typing import Any
 import pytest
 
 from bluer_options import string
-from bluer_options.env import get_env, BLUER_OPTIONS_TIMEZONE, abcli_is_rpi4
+from bluer_options.env import (
+    get_env,
+    BLUER_OPTIONS_TIMEZONE,
+    abcli_is_rpi4,
+    abcli_is_rpi5,
+)
 
 
 @pytest.mark.parametrize(
@@ -47,3 +52,4 @@ def test_bluer_options_env():
     assert BLUER_OPTIONS_TIMEZONE
 
     assert isinstance(abcli_is_rpi4, str)
+    assert isinstance(abcli_is_rpi5, str)
