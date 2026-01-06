@@ -154,6 +154,6 @@ def log_list(
             )
         )
 
-        if max_count != -1 and index >= max_count - 1:
+        if max_count != -1 and index > max_count - 1:
             logger.info("...")
             break
