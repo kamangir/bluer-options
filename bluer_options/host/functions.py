@@ -143,6 +143,7 @@ def signature() -> List[str]:
         ]
         + ([env.BLUER_AI_WIFI_SSID] if env.BLUER_AI_WIFI_SSID else [])
         + (["online"] if env.BLUER_AI_IS_ONLINE else ["offline"])
+        + (["national"] if env.INTERNET_IS_NATIONAL else [])
     )
 
 

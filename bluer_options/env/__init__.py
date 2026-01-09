@@ -27,6 +27,8 @@ BLUER_AI_WIFI_SSID = get_env("BLUER_AI_WIFI_SSID")
 
 BLUER_AI_IS_ONLINE = get_env("BLUER_AI_IS_ONLINE", 1)
 
+INTERNET_IS_NATIONAL = get_env("INTERNET_IS_NATIONAL", 0)
+
 BLUER_OPTIONS_TIMEZONE = get_env("BLUER_OPTIONS_TIMEZONE")
 
 abcli_is_rpi4 = get_env("abcli_is_rpi4")
