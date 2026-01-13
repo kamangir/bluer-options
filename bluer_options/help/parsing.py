@@ -6,6 +6,7 @@ list_of_modules: List[str] = [
     "bluer_agent",
     "bluer_ai",
     "bluer_algo",
+    "bluer_designs",
     "bluer_flow",
     "bluer_geo",
     "bluer_journal",
