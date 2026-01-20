@@ -23,7 +23,7 @@ def are_nonempty_strs(
     return are_func_things(
         list_of_things,
         str,
-        lambda x: bool(x),
+        bool,
         "empty str.",
         log=log,
     )
