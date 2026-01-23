@@ -32,5 +32,8 @@ function bluer_ai_pylint() {
 
     popd >/dev/null
 
+    [[ "$status" -ne 0 ]] &&
+        bluer_ai_log_error "pylint failed for $repo_name."
+
     return $status
 }

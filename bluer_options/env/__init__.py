@@ -30,3 +30,5 @@ BLUER_OPTIONS_TIMEZONE = get_env("BLUER_OPTIONS_TIMEZONE")
 abcli_is_rpi4 = get_env("abcli_is_rpi4")
 
 abcli_is_rpi5 = get_env("abcli_is_rpi5")
+
+BLUER_AI_WEB_STATUS = get_env("BLUER_AI_WEB_STATUS")
