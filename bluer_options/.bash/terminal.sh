@@ -27,7 +27,7 @@ function bluer_ai_get_icon() {
         local icon="💻 "
     fi
 
-    echo "$abcli_status_icons$icon"
+    echo "$BLUER_AI_STATUS_ICONS$icon"
 }
 
 function bluer_ai_set_prompt() {
