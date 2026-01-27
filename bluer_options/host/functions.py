@@ -4,7 +4,9 @@ import os
 from blueness import module
 from blueness import NAME as blueness_NAME
 from blueness import VERSION as blueness_VERSION
+
 from bluer_options import NAME, env, fullname, string
+from bluer_options.web.access import as_str as access_as_str
 from bluer_options.logger import crash_report
 
 NAME = module.name(__file__, NAME)
@@ -142,7 +144,7 @@ def signature() -> List[str]:
             get_name(),
         ]
         + ([env.BLUER_AI_WIFI_SSID] if env.BLUER_AI_WIFI_SSID else [])
-        + [env.BLUER_AI_INTERNET_STATUS]
+        + [access_as_str(emoji=False)]
     )
 
 
