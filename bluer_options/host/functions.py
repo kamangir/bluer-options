@@ -142,7 +142,7 @@ def signature() -> List[str]:
             get_name(),
         ]
         + ([env.BLUER_AI_WIFI_SSID] if env.BLUER_AI_WIFI_SSID else [])
-        + [env.BLUER_AI_WEB_STATUS]
+        + [env.BLUER_AI_INTERNET_STATUS]
     )
 
 
