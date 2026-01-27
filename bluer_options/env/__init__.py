@@ -31,6 +31,11 @@ abcli_is_rpi4 = get_env("abcli_is_rpi4")
 
 abcli_is_rpi5 = get_env("abcli_is_rpi5")
 
+BLUER_AI_PYPI_IS_ACCESSIBLE = get_env(
+    "BLUER_AI_PYPI_IS_ACCESSIBLE",
+    1,
+)
+
 BLUER_AI_STORAGE_IS_ACCESSIBLE = get_env(
     "BLUER_AI_STORAGE_IS_ACCESSIBLE",
     1,
