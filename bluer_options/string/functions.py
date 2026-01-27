@@ -317,7 +317,7 @@ def timestamp(unique_length: int = 6) -> str:
     return pretty_date(
         as_filename=True,
         include_time=True,
-        unique=True,
+        unique=unique_length > 0,
         unique_length=unique_length,
     )
 
