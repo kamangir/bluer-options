@@ -20,6 +20,7 @@ setup(
         f"{NAME}.string",
         f"{NAME}.terminal",
         f"{NAME}.timing",
+        f"{NAME}.web",
     ],
     include_package_data=True,
     package_data={
