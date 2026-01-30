@@ -21,9 +21,9 @@ def as_str(
                 "{} {}".format(
                     name,
                     (
-                        ("✅" if emoji else "pass")
+                        ("✅" if emoji else "")
                         if accessible
-                        else ("🛑" if emoji else "fail")
+                        else ("🛑" if emoji else "X")
                     ),
                 )
                 for name, accessible in {
