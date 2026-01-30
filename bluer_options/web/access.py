@@ -18,12 +18,12 @@ def as_str(
         ),
         ", ".join(
             [
-                "{} {}".format(
+                "{}{}".format(
                     name,
                     (
-                        ("✅" if emoji else "")
+                        (" ✅" if emoji else "")
                         if accessible
-                        else ("🛑" if emoji else "X")
+                        else (" 🛑" if emoji else " X")
                     ),
                 )
                 for name, accessible in {
