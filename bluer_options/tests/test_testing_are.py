@@ -7,6 +7,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -17,6 +18,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -27,6 +29,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": True,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -37,6 +40,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -47,6 +51,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": True,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -57,6 +62,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -67,6 +73,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -77,6 +84,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -87,6 +95,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -97,6 +106,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -107,6 +117,7 @@ list_of_assets = [
         "are_nonempty_strs": True,
         "are_positive_floats": True,
         "are_positive_ints": True,
+        "are_strs": True,
         "is_list_of_str": True,
     },
     {
@@ -117,6 +128,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": True,
         "is_list_of_str": True,
     },
     {
@@ -127,6 +139,7 @@ list_of_assets = [
         "are_nonempty_strs": True,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": True,
         "is_list_of_str": True,
     },
     # += boolean
@@ -138,6 +151,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -148,6 +162,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -158,6 +173,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": True,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -168,6 +184,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -178,6 +195,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -188,6 +206,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": True,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -198,6 +217,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -208,6 +228,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -218,6 +239,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -228,6 +250,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -238,6 +261,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -248,6 +272,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -258,6 +283,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
     {
@@ -268,6 +294,7 @@ list_of_assets = [
         "are_nonempty_strs": False,
         "are_positive_floats": False,
         "are_positive_ints": False,
+        "are_strs": False,
         "is_list_of_str": False,
     },
 ]
