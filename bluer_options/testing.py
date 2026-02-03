@@ -16,6 +16,32 @@ def are_01(
     )
 
 
+def are_bools(
+    list_of_things: List[Any],
+    log: bool = False,
+) -> bool:
+    return are_func_things(
+        list_of_things,
+        bool,
+        lambda x: True,
+        "should not be printed",
+        log=log,
+    )
+
+
+def are_ints(
+    list_of_things: List[Any],
+    log: bool = False,
+) -> bool:
+    return are_func_things(
+        list_of_things,
+        int,
+        lambda x: True,
+        "should not be printed",
+        log=log,
+    )
+
+
 def are_nonempty_strs(
     list_of_things: List[Any],
     log: bool = False,
@@ -37,7 +63,7 @@ def are_positive_floats(
         list_of_things,
         float,
         lambda x: x > 0,
-        "{:02f} < 0!",
+        "{:02f} <= 0!",
         log=log,
     )
 
@@ -50,7 +76,7 @@ def are_positive_ints(
         list_of_things,
         int,
         lambda x: x > 0,
-        "{} < 0!",
+        "{} <= 0!",
         log=log,
     )
 
