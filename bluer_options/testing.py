@@ -81,6 +81,19 @@ def are_positive_ints(
     )
 
 
+def are_strs(
+    list_of_things: List[Any],
+    log: bool = False,
+) -> bool:
+    return are_func_things(
+        list_of_things,
+        str,
+        lambda x: True,
+        "should not be printed",
+        log=log,
+    )
+
+
 def are_func_things(
     list_of_things: List[Any],
     type: Type,
