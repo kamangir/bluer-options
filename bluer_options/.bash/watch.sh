@@ -22,5 +22,7 @@ function bluer_ai_watch() {
         fi
 
         bluer_ai_sleep ,$options
+
+        [[ "$do_clear" == 0 ]] && bluer_ai_hr
     done
 }
