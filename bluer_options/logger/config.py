@@ -53,8 +53,9 @@ def shorten_text(
     max_length: int = 100,
 ) -> str:
     return (
-        "{}...".format(
+        "{}... (len:{:,})".format(
             text[: max_length - 3],
+            len(text),
         )
         if len(text) > max_length
         else text
