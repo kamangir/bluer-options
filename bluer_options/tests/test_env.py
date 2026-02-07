@@ -3,12 +3,8 @@ from typing import Any
 import pytest
 
 from bluer_options import string
-from bluer_options.env import (
-    get_env,
-    BLUER_OPTIONS_TIMEZONE,
-    abcli_is_rpi4,
-    abcli_is_rpi5,
-)
+from bluer_options.testing import are_01, are_nonempty_strs
+from bluer_options import env
 
 
 @pytest.mark.parametrize(
@@ -44,12 +40,21 @@ def test_env_get_env(
 ):
     os.environ[name] = value
 
-    value_as_is = get_env(name, default)
+    value_as_is = env.get_env(name, default)
     assert value_as_is == expected_value
 
 
 def test_bluer_options_env():
-    assert BLUER_OPTIONS_TIMEZONE
+    assert are_nonempty_strs(
+        [
+            env.abcli_is_rpi4,
+            env.abcli_is_rpi5,
+            env.BLUER_OPTIONS_TIMEZONE,
+        ]
+    )
 
-    assert isinstance(abcli_is_rpi4, str)
-    assert isinstance(abcli_is_rpi5, str)
+    assert are_01(
+        [
+            env.BLUER_AI_FORCE_OFFLINE,
+        ]
+    )

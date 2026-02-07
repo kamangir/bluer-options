@@ -6,7 +6,7 @@ def as_str(
     emoji: bool = True,
     timestamp: bool = False,
 ) -> str:
-    return "{} {}".format(
+    return "{} {}{}".format(
         (
             "{} -".format(
                 string.timestamp(
@@ -33,4 +33,5 @@ def as_str(
                 }.items()
             ]
         ),
+        " [forced offline]" if env.BLUER_AI_FORCE_OFFLINE else "",
     )

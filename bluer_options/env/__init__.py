@@ -44,3 +44,8 @@ BLUER_AI_WEB_IS_ACCESSIBLE = get_env(
     "BLUER_AI_WEB_IS_ACCESSIBLE",
     1,
 )
+
+BLUER_AI_FORCE_OFFLINE = get_env(
+    "BLUER_AI_FORCE_OFFLINE",
+    0,
+)

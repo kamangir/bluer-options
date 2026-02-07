@@ -1,10 +1,44 @@
 #! /usr/bin/env bash
 
 function bluer_ai_badge() {
-    local note=$1
-    [[ "$note" == "clear" ]] && note=""
+    local options=$1
+    local do_clear=$(bluer_ai_option_int "$options" clear 0)
+    local do_reset=$(bluer_ai_option_int "$options" reset 0)
+    local do_save=$(bluer_ai_option_int "$options" save 0)
+    local verbose=$(bluer_ai_option_int "$options" verbose 0)
 
-    echo -e "\033]1337;SetBadgeFormat=$(echo -n "$note" | base64)\a"
+    local badge=$2
+
+    if [[ "$do_clear" == 1 ]]; then
+        badge=""
+
+        [[ "$verbose" == 1 ]] &&
+            bluer_ai_log "cleared badge."
+    fi
+
+    if [[ "$do_reset" == 1 ]]; then
+        badge=$BLUER_AI_BADGE_DEFAULT
+
+        [[ "$verbose" == 1 ]] &&
+            bluer_ai_log "resetting badge.",
+    fi
+
+    if [[ "$do_save" == 1 ]]; then
+        export BLUER_AI_BADGE_DEFAULT=$BLUER_AI_BADGE
+
+        [[ "$verbose" == 1 ]] &&
+            bluer_ai_log "saved badge."
+
+        [[ -z "$badge" ]] &&
+            return 0
+    fi
+
+    [[ "$verbose" == 1 ]] &&
+        bluer_ai_log "badge: $badge"
+
+    export BLUER_AI_BADGE=$badge
+
+    echo -e "\033]1337;SetBadgeFormat=$(echo -n "$badge" | base64)\a"
 }
 
 function bluer_ai_get_icon() {
@@ -54,7 +88,7 @@ function bluer_ai_update_terminal() {
     local icon=$(bluer_ai_get_icon)
 
     [[ ! -z "$icon" ]] &&
-        bluer_ai_badge "$icon"
+        bluer_ai_badge - "$icon"
 
     local title="$icon $abcli_fullname"
     [[ "$abcli_is_sagemaker" == false ]] &&
