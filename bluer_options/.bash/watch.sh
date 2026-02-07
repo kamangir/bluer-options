@@ -5,6 +5,7 @@ function bluer_ai_watch() {
     local do_clear=$(bluer_ai_option_int "$options" clear 1)
     local count=$(bluer_ai_option "$options" count -1)
     local error=$(bluer_ai_option "$options" error none)
+    local add_hr=$(bluer_ai_option_int "$options" hr 1)
 
     local loop_count=0
     while true; do
@@ -23,6 +24,8 @@ function bluer_ai_watch() {
 
         bluer_ai_sleep ,$options
 
-        [[ "$do_clear" == 0 ]] && bluer_ai_hr
+        [[ "$do_clear" == 0 ]] &&
+            [[ "$add_hr" == 1 ]] &&
+            bluer_ai_hr
     done
 }
