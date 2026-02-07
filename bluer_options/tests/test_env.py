@@ -3,7 +3,7 @@ from typing import Any
 import pytest
 
 from bluer_options import string
-from bluer_options.testing import are_01, are_nonempty_strs
+from bluer_options.testing import are_01, are_nonempty_strs, are_strs
 from bluer_options import env
 
 
@@ -45,16 +45,21 @@ def test_env_get_env(
 
 
 def test_bluer_options_env():
+    assert are_01(
+        [
+            env.BLUER_AI_FORCE_OFFLINE,
+        ]
+    )
+
     assert are_nonempty_strs(
         [
-            env.abcli_is_rpi4,
-            env.abcli_is_rpi5,
             env.BLUER_OPTIONS_TIMEZONE,
         ]
     )
 
-    assert are_01(
+    assert are_strs(
         [
-            env.BLUER_AI_FORCE_OFFLINE,
+            env.abcli_is_rpi4,
+            env.abcli_is_rpi5,
         ]
     )
