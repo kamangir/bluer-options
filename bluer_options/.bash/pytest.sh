@@ -19,9 +19,13 @@ function bluer_ai_pytest() {
     local repo_name=$(bluer_ai_unpack_repo_name $plugin_name)
     bluer_ai_log "$plugin_name: pytest: repo=$repo_name"
 
+    bluer_ai_badge save "py 🧪"
+
     # https://stackoverflow.com/a/40720333/17619982
     bluer_ai_eval "path=$abcli_path_git/$repo_name,$options" \
         python3 -m pytest "$args"
+
+    bluer_ai_badge reset
 }
 
 # https://stackoverflow.com/a/40724361/10917551

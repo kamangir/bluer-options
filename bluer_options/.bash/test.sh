@@ -13,6 +13,7 @@ function bluer_ai_test() {
     fi
 
     bluer_ai_log "testing $plugin_name ..."
+    bluer_ai_badge save "bash 🧪"
 
     local do_dryrun=$(bluer_ai_option_int "$options" dryrun 0)
 
@@ -38,6 +39,8 @@ function bluer_ai_test() {
 
         bluer_ai_hr
     done
+
+    bluer_ai_badge reset
 
     failed_test_list=$(bluer_ai_list_nonempty $failed_test_list)
     if [[ -z "$failed_test_list" ]]; then
