@@ -96,7 +96,7 @@ function bluer_ai_update_terminal() {
     local icon=$(bluer_ai_get_icon)
 
     [[ ! -z "$icon" ]] &&
-        bluer_ai_badge - "$icon"
+        bluer_ai_badge save "$icon"
 
     local title="$icon $abcli_fullname"
     [[ "$abcli_is_sagemaker" == false ]] &&

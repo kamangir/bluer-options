@@ -13,7 +13,7 @@ function bluer_ai_test() {
     fi
 
     bluer_ai_log "testing $plugin_name ..."
-    bluer_ai_badge save "bash 🧪"
+    bluer_ai_badge - "bash 🧪"
 
     local do_dryrun=$(bluer_ai_option_int "$options" dryrun 0)
 
