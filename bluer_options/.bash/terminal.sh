@@ -41,6 +41,14 @@ function bluer_ai_badge() {
     echo -e "\033]1337;SetBadgeFormat=$(echo -n "$badge" | base64)\a"
 }
 
+function bluer_ai_clear() {
+    cd
+
+    clear
+
+    bluer_ai_badge reset
+}
+
 function bluer_ai_get_icon() {
     local icon=""
     if [ "$abcli_is_docker" == true ]; then

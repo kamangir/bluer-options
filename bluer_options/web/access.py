@@ -27,7 +27,7 @@ def as_str(
                     ),
                 )
                 for name, accessible in {
-                    "storage": env.BLUER_AI_STORAGE_IS_ACCESSIBLE,
+                    "cloud": env.BLUER_AI_CLOUD_IS_ACCESSIBLE,
                     "web": env.BLUER_AI_WEB_IS_ACCESSIBLE,
                     "pypi": env.BLUER_AI_PYPI_IS_ACCESSIBLE,
                 }.items()
