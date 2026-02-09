@@ -6,7 +6,7 @@ from blueness import NAME as blueness_NAME
 from blueness import VERSION as blueness_VERSION
 
 from bluer_options import NAME, env, fullname, string
-from bluer_options.web.access import as_str as access_as_str
+from bluer_options.web.access.as_str import as_str as access_as_str
 from bluer_options.logger import crash_report
 
 NAME = module.name(__file__, NAME)
