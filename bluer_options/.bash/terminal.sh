@@ -23,6 +23,8 @@ function bluer_ai_badge() {
             bluer_ai_log "resetting badge.",
     fi
 
+    export BLUER_AI_BADGE=$badge
+
     if [[ "$do_save" == 1 ]]; then
         export BLUER_AI_BADGE_DEFAULT=$BLUER_AI_BADGE
 
@@ -35,8 +37,6 @@ function bluer_ai_badge() {
 
     [[ "$verbose" == 1 ]] &&
         bluer_ai_log "badge: $badge"
-
-    export BLUER_AI_BADGE=$badge
 
     echo -e "\033]1337;SetBadgeFormat=$(echo -n "$badge" | base64)\a"
 }
