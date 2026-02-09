@@ -27,8 +27,8 @@ def as_str(
                         else (" 🛑" if emoji else " X")
                     ),
                 )
-                for name, info in dict_of_variables.items()
+                for name, info in dict_of_variables(for_logging=True).items()
             ]
         ),
-        "⛓️‍💥 [ forced offline]" if env.BLUER_AI_FORCE_OFFLINE else "",
+        " | ⛓️‍💥 [ forced offline]" if env.BLUER_AI_FORCE_OFFLINE else "",
     )

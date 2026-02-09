@@ -19,6 +19,7 @@ setup(
         f"{NAME}.options",
         f"{NAME}.string",
         f"{NAME}.terminal",
+        f"{NAME}.testing",
         f"{NAME}.timing",
         f"{NAME}.web",
         f"{NAME}.web.access",

@@ -77,7 +77,9 @@ elif args.task == "check":
     )
 elif args.task == "get_var_name":
     print(
-        dict_of_variables.get(args.keyword, {}).get(
+        dict_of_variables()
+        .get(args.keyword, {})
+        .get(
             "name",
             "",
         )
