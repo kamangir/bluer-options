@@ -4,3 +4,4 @@ matplotlib
 numpy
 pymysql
 python-dotenv[cli]
+requests
