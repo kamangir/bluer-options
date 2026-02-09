@@ -1,6 +1,6 @@
 import pytest
 
-from bluer_options.web.access import as_str
+from bluer_options.web.access.as_str import as_str
 
 
 @pytest.mark.parametrize(
@@ -17,7 +17,7 @@ from bluer_options.web.access import as_str
         [True],
     ],
 )
-def test_web_access(
+def test_web_access_as_str(
     emoji: bool,
     timestamp: bool,
 ):

@@ -21,6 +21,7 @@ setup(
         f"{NAME}.terminal",
         f"{NAME}.timing",
         f"{NAME}.web",
+        f"{NAME}.web.access",
     ],
     include_package_data=True,
     package_data={
