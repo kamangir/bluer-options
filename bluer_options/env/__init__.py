@@ -49,3 +49,5 @@ BLUER_AI_FORCE_OFFLINE = get_env(
     "BLUER_AI_FORCE_OFFLINE",
     0,
 )
+
+abcli_is_github_workflow = get_env("GITHUB_ACTIONS")

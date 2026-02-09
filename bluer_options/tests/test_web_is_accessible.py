@@ -1,0 +1,14 @@
+from bluer_options.web.access.check import get
+from bluer_options.env import abcli_is_github_workflow
+
+
+def test_url_is_accessible():
+    success = get("void")
+    assert not success
+
+    url = "https://cnn.com" if abcli_is_github_workflow else "https://iribnews.ir"
+    success = get(
+        url,
+        timeout=4,
+    )
+    assert success

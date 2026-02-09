@@ -1,5 +1,6 @@
-from bluer_options import string
 from bluer_options import env
+from bluer_options import string
+from bluer_options.web.access.vars import dict_of_variables
 
 
 def as_str(
@@ -22,16 +23,12 @@ def as_str(
                     name,
                     (
                         (" ✅" if emoji else "")
-                        if accessible
+                        if info["value"]
                         else (" 🛑" if emoji else " X")
                     ),
                 )
-                for name, accessible in {
-                    "cloud": env.BLUER_AI_CLOUD_IS_ACCESSIBLE,
-                    "web": env.BLUER_AI_WEB_IS_ACCESSIBLE,
-                    "pypi": env.BLUER_AI_PYPI_IS_ACCESSIBLE,
-                }.items()
+                for name, info in dict_of_variables.items()
             ]
         ),
-        " [forced offline]" if env.BLUER_AI_FORCE_OFFLINE else "",
+        "⛓️‍💥 [ forced offline]" if env.BLUER_AI_FORCE_OFFLINE else "",
     )
