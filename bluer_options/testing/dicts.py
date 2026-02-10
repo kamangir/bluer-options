@@ -3,18 +3,18 @@ from typing import Any, Type
 from bluer_options.logger import logger
 
 
-def is_a_flat_dict(
-    thing: Any,
-    key_type: Type,
-    value_type: Type,
+def is_a_dict(
+    things: Any,
+    key_type: Type = str,
+    value_type: Type = int,
     log: bool = False,
 ) -> bool:
-    if not isinstance(thing, dict):
+    if not isinstance(things, dict):
         if log:
-            logger.error(f"{thing.__class__.__name__} is not a dict.")
+            logger.error(f"{things.__class__.__name__} is not a dict.")
         return False
 
-    for key, value in thing.items():
+    for key, value in things.items():
         if not isinstance(key, key_type):
             if log:
                 logger.error(

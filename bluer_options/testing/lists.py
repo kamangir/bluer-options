@@ -127,10 +127,14 @@ def are_func_things(
     return True
 
 
-def is_list_of_str(thing: Any):
+def is_list_of_str(
+    things: Any,
+    log: bool = False,
+):
     return are_func_things(
-        thing,
+        things,
         str,
         lambda x: True,
         "you must never see this!",
+        log=log,
     )

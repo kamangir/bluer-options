@@ -102,22 +102,21 @@ list_of_assets = [
     },
     {
         "things": {"this": 12},
-        "is_a_flat_dict": 1,
+        "is_a_dict": 1,
     },
     {
         "things": {
             "this": 0,
             "that": 1,
         },
-        "is_a_flat_dict": 1,
+        "is_a_dict": 1,
     },
     {
         "things": {"this": True},
-        "is_a_flat_dict": 1,
+        "is_a_dict": 1,
     },
     {
         "things": [{"this": False}],
-        "is_a_flat_dict": 1,
     },
     {
         "things": ["this", [True]],
