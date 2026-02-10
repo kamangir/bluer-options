@@ -6,6 +6,7 @@ from blueness.argparse.generic import sys_exit
 from bluer_options import NAME
 from bluer_options.web.access.as_str import as_str
 from bluer_options.web.access.check import check
+from bluer_options.web.access.color import get_color
 from bluer_options.web.access.vars import dict_of_variables
 from bluer_options.logger import logger
 
@@ -14,6 +15,7 @@ NAME = module.name(__file__, NAME)
 list_of_tasks = [
     "as_str",
     "check",
+    "get_color",
     "get_var_name",
 ]
 
@@ -59,7 +61,7 @@ args = parser.parse_args()
 
 success = args.task in list_of_tasks
 if args.task == "as_str":
-    print(
+    logger.info(
         as_str(
             emoji=args.emoji == 1,
             timestamp=args.timestamp == 1,
@@ -75,6 +77,8 @@ elif args.task == "check":
             )
         )
     )
+elif args.task == "get_color":
+    print(get_color())
 elif args.task == "get_var_name":
     print(
         dict_of_variables()
