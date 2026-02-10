@@ -72,6 +72,12 @@ function bluer_ai_get_icon() {
     echo "$BLUER_AI_STATUS_ICONS$icon"
 }
 
+function bluer_ai_set_background_color() {
+    local color=${1:-000000}
+
+    echo -e "\033]1337;SetColors=bg=${color}\a"
+}
+
 function bluer_ai_set_prompt() {
     # https://askubuntu.com/a/946716
     force_color_prompt=yes
