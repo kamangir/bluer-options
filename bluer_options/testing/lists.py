@@ -4,11 +4,11 @@ from bluer_options.logger import logger
 
 
 def are_01(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         int,
         lambda x: x in (0, 1),
         "{} is neither 0 nor 1.",
@@ -17,11 +17,11 @@ def are_01(
 
 
 def are_bools(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         bool,
         lambda x: True,
         "should not be printed",
@@ -30,11 +30,11 @@ def are_bools(
 
 
 def are_ints(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         int,
         lambda x: True,
         "should not be printed",
@@ -43,11 +43,11 @@ def are_ints(
 
 
 def are_nonempty_strs(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         str,
         bool,
         "empty str.",
@@ -56,11 +56,11 @@ def are_nonempty_strs(
 
 
 def are_positive_floats(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         float,
         lambda x: x > 0,
         "{:02f} <= 0!",
@@ -69,11 +69,11 @@ def are_positive_floats(
 
 
 def are_positive_ints(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         int,
         lambda x: x > 0,
         "{} <= 0!",
@@ -82,11 +82,11 @@ def are_positive_ints(
 
 
 def are_strs(
-    list_of_things: List[Any],
+    things: Any,
     log: bool = False,
 ) -> bool:
     return are_func_things(
-        list_of_things,
+        things,
         str,
         lambda x: True,
         "should not be printed",
@@ -95,18 +95,18 @@ def are_strs(
 
 
 def are_func_things(
-    list_of_things: List[Any],
+    things: Any,
     type: Type,
     func,
     error_message: str,
     log: bool = False,
 ) -> bool:
-    if not isinstance(list_of_things, list):
+    if not isinstance(things, list):
         if log:
-            logger.error(f"{list_of_things.__class__.__name__} is not a list.")
+            logger.error(f"{things.__class__.__name__} is not a list.")
         return False
 
-    for thing in list_of_things:
+    for thing in things:
         if not isinstance(thing, type):
             if log:
                 logger.error(
@@ -127,10 +127,14 @@ def are_func_things(
     return True
 
 
-def is_list_of_str(thing: Any):
+def is_list_of_str(
+    things: Any,
+    log: bool = False,
+):
     return are_func_things(
-        thing,
+        things,
         str,
         lambda x: True,
         "you must never see this!",
+        log=log,
     )
