@@ -1,6 +1,7 @@
 import argparse
 import random
 import os
+import time
 
 from blueness import module
 
@@ -9,19 +10,25 @@ from bluer_options import string
 
 NAME = module.name(__file__, NAME)
 
-list_of_tasks = "after | before | pretty_date | random"
+list_of_tasks = [
+    "after",
+    "before",
+    "pretty_date",
+    "random",
+    "time_since",
+]
 
 
 parser = argparse.ArgumentParser(NAME)
 parser.add_argument(
     "task",
     type=str,
-    help=list_of_tasks,
+    help=" | ".join(list_of_tasks),
 )
 parser.add_argument(
     "--include_time",
     type=int,
-    help="0|1",
+    help="0 | 1",
     default=1,
 )
 parser.add_argument(
@@ -40,19 +47,31 @@ parser.add_argument(
 parser.add_argument(
     "--unique",
     type=int,
-    help="0|1",
+    help="0 | 1",
     default=0,
 )
 parser.add_argument(
     "--float",
     type=int,
-    help="0|1",
+    help="0 | 1",
+    default=0,
+)
+parser.add_argument(
+    "--include_ms",
+    type=int,
+    help="0 | 1",
     default=0,
 )
 parser.add_argument(
     "--int",
     type=int,
-    help="0|1",
+    help="0 | 1",
+    default=0,
+)
+parser.add_argument(
+    "--largest",
+    type=int,
+    help="0 | 1",
     default=0,
 )
 parser.add_argument(
@@ -65,9 +84,19 @@ parser.add_argument(
     type=float,
     default=100.0,
 )
+parser.add_argument(
+    "--short",
+    type=int,
+    help="0 | 1",
+    default=1,
+)
+parser.add_argument(
+    "--start_time",
+    type=float,
+)
 args = parser.parse_args()
 
-success = args.task in list_of_tasks.split(" | ")
+success = args.task in list_of_tasks
 if args.task == "after":
     print(string.after(args.string, args.substring))
 elif args.task == "before":
@@ -92,6 +121,15 @@ elif args.task == "random":
         )
         if args.float == 1 or args.int == 1
         else string.random(args.length)
+    )
+elif args.task == "time_since":
+    print(
+        string.pretty_duration(
+            time.time() - args.start_time,
+            include_ms=args.include_ms == 1,
+            largest=args.largest == 1,
+            short=args.short == 1,
+        )
     )
 else:
     print(f"-{NAME}: {args.task}: command not found")
