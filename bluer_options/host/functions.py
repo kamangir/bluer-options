@@ -179,4 +179,11 @@ def tensor_processing_signature() -> List[str]:
     except:
         pass
 
+    try:
+        import numpy
+
+        output += [f"numpy-{numpy.__version__}"]
+    except:
+        pass
+
     return output
