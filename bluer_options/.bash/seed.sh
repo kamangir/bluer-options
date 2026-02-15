@@ -183,11 +183,7 @@ function bluer_ai_seed() {
         seed="${seed}bluer_ai_eval ${@:3}$delim_section"
 
     if [ "$output" == "clipboard" ]; then
-        if [ "$abcli_is_mac" == true ]; then
-            echo $seed | pbcopy
-        elif [ "$abcli_is_ubuntu" == true ]; then
-            echo $seed | xclip -sel clip
-        fi
+        bluer_ai_copy_to_clipboard $seed
 
         [[ "$do_log" == 1 ]] &&
             bluer_ai_log "📋 paste the seed 🌱 in the $target terminal."
