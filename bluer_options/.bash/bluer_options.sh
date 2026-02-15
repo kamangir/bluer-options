@@ -27,6 +27,7 @@ function bluer_options_source_dependencies() {
     source $path/assert.sh
     source $path/bool.sh
     source $path/browse.sh
+    source $path/clipboard.sh
     source $path/code.sh
     source $path/env.sh
     source $path/eval.sh
