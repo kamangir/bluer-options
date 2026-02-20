@@ -46,7 +46,7 @@ function bluer_ai_clear() {
 
     clear
 
-    bluer_ai_badge reset
+    bluer_ai_update_terminal
 }
 
 function bluer_ai_get_icon() {
