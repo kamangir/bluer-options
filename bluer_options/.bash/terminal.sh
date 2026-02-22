@@ -44,9 +44,9 @@ function bluer_ai_badge() {
 function bluer_ai_clear() {
     cd
 
-    clear
-
     bluer_ai_update_terminal
+
+    clear
 }
 
 function bluer_ai_get_icon() {
